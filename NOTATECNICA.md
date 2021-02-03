@@ -1,5 +1,5 @@
 <h1>Nota Técnica<h1>
-<h4>Conforme apontado na  CVE-2021-3007, essa vulnerabilidade atinge a versão do Zend Framework 3, apontado em nota técnica pela comunidade no Link1 (criando um projeto do zero com Zend Framework 3). Essa é uma vulnerabilidade de desserialização de segurança no framework, que pode levar à execução remota de código se o conteúdo for controlável relacionado ao  método  __destruct da  classe Zend \ Http \ Response \ Stream  em  Stream.php 
+<h4>Conforme apontado na  CVE-2021-3007, essa vulnerabilidade atinge a versão do Zend Framework 3, apontado em nota técnica pela comunidade no link abaixo (criando um projeto do zero com Zend Framework 3). Essa é uma vulnerabilidade de desserialização de segurança no framework, que pode levar à execução remota de código se o conteúdo for controlável relacionado ao  método  __destruct da  classe Zend \ Http \ Response \ Stream  em  Stream.php 
 <h4>
 <h4>Mas não se preocupe (por enquanto rs), pois o Portal Vale Cultura contempla a versão do Zend Framework 1.12.3, conforme arquivo "Version.php"<h4>
 
