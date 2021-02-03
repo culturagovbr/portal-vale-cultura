@@ -211,7 +211,7 @@ class Zend_Mail extends Zend_Mime_Message
      * @param  string $charset
      * @return void
      */
-    public function __construct($charset = null)
+    public function __construct($charset = 'UTF-8')
     {
         if ($charset != null) {
             $this->_charset = $charset;
