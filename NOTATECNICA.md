@@ -9,4 +9,6 @@
 <h5>https://nvd.nist.gov/vuln/detail/CVE-2021-3007<h5>
 <h5>https://meterpreter.org/CVE-2021-3007-zend-framework-remote-code-execution-vulnerability-alert/
 <h5>
+  
+  <img src="public/img/vale-cultura-zend-version.png">
 
