@@ -7,9 +7,9 @@ class Minc_IndexController extends GenericController
 
     public function init()
     {
-        // Layout Padrão
+        // Layout Padrï¿½o
         $this->view->layout()->setLayout('layout');
-        // Título
+        // Tï¿½tulo
         $this->view->assign('titulo', 'Minc');
 
         parent::init();
@@ -68,20 +68,20 @@ class Minc_IndexController extends GenericController
                             $enviarEmail = $modelEmail->enviarEmail($DSEMAIL, 'Acesso ao sistema Vale Cultura', $htmlEmail);
                             parent::message('Um e-mail foi enviado para ' . $DSEMAIL, '/', 'confirm');
                         } else {
-                            parent::message('Falha na solicitação', '/', 'error');
+                            parent::message('Falha na solicitaï¿½ï¿½o', '/', 'error');
                         }
                     } catch (Exception $exc) {
-                        parent::message('Falha na solicitação', '/', 'error');
+                        parent::message('Falha na solicitaï¿½ï¿½o', '/', 'error');
                         echo $exc->getTraceAsString();
                     }
                 } else {
                     parent::message('Nenhum e-mail cadastrado para este CPF', '/', 'error');
                 }
             } else {
-                parent::message('CPF não cadastrado', '/', 'error');
+                parent::message('CPF nï¿½o cadastrado', '/', 'error');
             }
         } else {
-            parent::message('Nenhuma informação enviada', '/', 'error');
+            parent::message('Nenhuma informaï¿½ï¿½o enviada', '/', 'error');
         }
     }
 
@@ -117,17 +117,17 @@ class Minc_IndexController extends GenericController
                         );
                         $modelUsuario->update($cols, $recuperaUsuario[0]->idUsuario);
                     } else {
-                        parent::message('Código inválido ', '/', 'error');
+                        parent::message('Cï¿½digo invï¿½lido ', '/', 'error');
                     }
                 } else {
-                    parent::message('Código inválido ', '/', 'error');
+                    parent::message('Cï¿½digo invï¿½lido ', '/', 'error');
                 }
             } else {
-                parent::message('Código inválido', '/', 'error');
+                parent::message('Cï¿½digo invï¿½lido', '/', 'error');
             }
 
             if (!$atualizaSenha) {
-                parent::message('Código inválido', '/', 'error');
+                parent::message('Cï¿½digo invï¿½lido', '/', 'error');
             }
         } else {
             $cols = array(
@@ -154,7 +154,7 @@ class Minc_IndexController extends GenericController
                     parent::message('Informe a nova senha', '/minc/index/novasenha/', 'error');
                 }
                 if ($NOVA_SENHA != $NOVA_SENHA_CONFIRMA) {
-                    parent::message('Senha de confirmação incorreta', '/minc/index/novasenha/', 'error');
+                    parent::message('Senha de confirmaï¿½ï¿½o incorreta', '/minc/index/novasenha/', 'error');
                 }
 
                 $cols = array('DS_SENHA' => md5($NOVA_SENHA));
@@ -166,7 +166,7 @@ class Minc_IndexController extends GenericController
             } else {
                 $session = new Zend_Session_Namespace('user');
                 $session->usuario = array();
-                parent::message('Falha na autenticação', '/minc/index/novasenha/', 'error');
+                parent::message('Falha na autenticaï¿½ï¿½o', '/minc/index/novasenha/', 'error');
             }
         }
     }
@@ -189,7 +189,7 @@ class Minc_IndexController extends GenericController
                 $htmlEmail = str_replace('#ASSUNTO#', $assunto, $htmlEmail);
                 $htmlEmail = str_replace('#MENSAGEM#', $mensagem, $htmlEmail);
 
-                if ($modelEmail->enviarEmail('valecultura@cultura.gov.br', 'Contato via sistema - Vale Cultura', $htmlEmail)) {
+                if ($modelEmail->enviarEmail('valecultura@turismo.gov.br', 'Contato via sistema - Vale Cultura', $htmlEmail)) {
                     $retorno['mensagem'] = '<b>E-mail enviado com sucesso!</b>';
                 } else {
                     $retorno['mensagem'] = '<b style="color: #f00">Erro no envio do E-mail</b>';
@@ -311,13 +311,13 @@ class Minc_IndexController extends GenericController
 
             if (is_array($DTINICIO)) {
                 if (!checkdate($DTINICIO[1], $DTINICIO[0], $DTINICIO[2])) {
-                    parent::message('Data de Cadastro (Mínima) inválida.', '/minc/admin/lista-beneficiarios/', 'error');
+                    parent::message('Data de Cadastro (Mï¿½nima) invï¿½lida.', '/minc/admin/lista-beneficiarios/', 'error');
                 }
             }
 
             if (is_array($DTFIM)) {
                 if (!checkdate($DTFIM[1], $DTFIM[0], $DTFIM[2])) {
-                    parent::message('Data de Cadastro (Máxima) inválida.', '/minc/admin/lista-beneficiarios/', 'error');
+                    parent::message('Data de Cadastro (Mï¿½xima) invï¿½lida.', '/minc/admin/lista-beneficiarios/', 'error');
                 }
             }
 
