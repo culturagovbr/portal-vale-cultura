@@ -68,20 +68,20 @@ class Minc_IndexController extends GenericController
                             $enviarEmail = $modelEmail->enviarEmail($DSEMAIL, 'Acesso ao sistema Vale Cultura', $htmlEmail);
                             parent::message('Um e-mail foi enviado para ' . $DSEMAIL, '/', 'confirm');
                         } else {
-                            parent::message('Falha na solicita��o', '/', 'error');
+                            parent::message('Falha na solicitação', '/', 'error');
                         }
                     } catch (Exception $exc) {
-                        parent::message('Falha na solicita��o', '/', 'error');
+                        parent::message('Falha na solicitação', '/', 'error');
                         echo $exc->getTraceAsString();
                     }
                 } else {
                     parent::message('Nenhum e-mail cadastrado para este CPF', '/', 'error');
                 }
             } else {
-                parent::message('CPF n�o cadastrado', '/', 'error');
+                parent::message('CPF não cadastrado', '/', 'error');
             }
         } else {
-            parent::message('Nenhuma informa��o enviada', '/', 'error');
+            parent::message('Nenhuma informação enviada', '/', 'error');
         }
     }
 
@@ -117,17 +117,17 @@ class Minc_IndexController extends GenericController
                         );
                         $modelUsuario->update($cols, $recuperaUsuario[0]->idUsuario);
                     } else {
-                        parent::message('C�digo inv�lido ', '/', 'error');
+                        parent::message('Código inválido ', '/', 'error');
                     }
                 } else {
-                    parent::message('C�digo inv�lido ', '/', 'error');
+                    parent::message('Código inválido ', '/', 'error');
                 }
             } else {
-                parent::message('C�digo inv�lido', '/', 'error');
+                parent::message('Código inválido', '/', 'error');
             }
 
             if (!$atualizaSenha) {
-                parent::message('C�digo inv�lido', '/', 'error');
+                parent::message('Código inválido', '/', 'error');
             }
         } else {
             $cols = array(
@@ -154,7 +154,7 @@ class Minc_IndexController extends GenericController
                     parent::message('Informe a nova senha', '/minc/index/novasenha/', 'error');
                 }
                 if ($NOVA_SENHA != $NOVA_SENHA_CONFIRMA) {
-                    parent::message('Senha de confirma��o incorreta', '/minc/index/novasenha/', 'error');
+                    parent::message('Senha de confirmação incorreta', '/minc/index/novasenha/', 'error');
                 }
 
                 $cols = array('DS_SENHA' => md5($NOVA_SENHA));
@@ -166,7 +166,7 @@ class Minc_IndexController extends GenericController
             } else {
                 $session = new Zend_Session_Namespace('user');
                 $session->usuario = array();
-                parent::message('Falha na autentica��o', '/minc/index/novasenha/', 'error');
+                parent::message('Falha na autenticação', '/minc/index/novasenha/', 'error');
             }
         }
     }
