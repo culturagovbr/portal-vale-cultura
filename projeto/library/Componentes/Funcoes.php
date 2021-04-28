@@ -582,12 +582,6 @@ function emailSenhaHTML()
                         <b>Senha:</b> #Senha#
                         <br><br>
                         Em caso de dúvidas, sugestões, reclamações ou denúncias, envie e-mail para <a href="mailto:#EMAIL#" style="text-decoration: underline;">#EMAIL#</a>.
-                        <br><br>
-                        Atenciosamente,
-                        <br><br>
-                        <b>Secretaria de Fomento e Incentivo à Cultura</b>
-                        <br>
-                        <b>Ministério da Cidadania</b>
                     </body>
                 </html>';
     return utf8_decode($html);
@@ -615,12 +609,6 @@ function emailNoSenhaHTML()
                         A sua senha já foi enviada anteriormente, para alterá-la acesse <a href="#URL#" target="_blank" style="text-decoration: underline;">#URL#</a> e clique em "Esqueceu a senha?"
                         <br><br>
                         Em caso de dúvidas, sugestões, reclamações ou denúncias, envie e-mail para <a href="mailto:#EMAIL#" style="text-decoration: underline;">#EMAIL#</a>.
-                        <br><br>
-                        Atenciosamente,
-                        <br><br>
-                        <b>Secretaria de Fomento e Incentivo à Cultura</b>
-                        <br>
-                        <b>Ministério da Cidadania</b>
                     </body>
                 </html>';
     return utf8_decode($html);
@@ -672,12 +660,7 @@ function emailContatoHTML()
                                 </td>
                             </tr>
                         </table>
-                        <br><br>
-                        Atenciosamente,
-                        <br><br>
-                        <b>Secretaria de Fomento e Incentivo à Cultura</b>
-                        <br>
-                        <b>Ministério da Cidadania</b>
+                       
                     </body>
                 </html>';
     return utf8_decode($html);
@@ -703,12 +686,6 @@ function emailNovaSenhaHTML()
                         Se esta redefinição de senha não foi solicitada por você, nenhuma ação é necessária. 
                         <br>
                         Se precisar de ajuda, envie e-mail para <a href="mailto:#EMAIL#" style="text-decoration: underline;">#EMAIL#</a>.
-                        <br><br>
-                        Atenciosamente,
-                        <br><br>
-                        <b>Secretaria de Fomento e Incentivo à Cultura</b>
-                        <br>
-                        <b>Ministério da Cidadania</b>
                     </body>
                 </html>';
     return utf8_decode($html);
@@ -730,12 +707,6 @@ function emailAprovacaoHTML()
                         O cadastro da #PERFIL# #NOMEEMPRESA# no Vale-Cultura foi aprovado.
                         <br>
                         Para consultar o certificado de inscrição, acesse <a href="#URL#" target="_blank" style="text-decoration: underline;">#URL#</a>.
-                        <br><br>
-                        Atenciosamente,
-                        <br><br>
-                        <b>Secretaria de Fomento e Incentivo à Cultura</b>
-                        <br>
-                        <b>Ministério da Cidadania</b>
                     </body>
                 </html>';
     return utf8_decode($html);
@@ -761,12 +732,6 @@ function emailAprovacaoOperadoraHTML()
                         Além disso, sua empresa também está autorizada a produzir e comercializar o cartão Vale-Cultura para as empresas Beneficiárias cadastradas no programa.
                         <br>
                         Para consultar o certificado de inscrição, acesse <a href="#URL#" target="_blank" style="text-decoration: underline;">#URL#</a> e faça o seu login.
-                        <br><br>
-                        Atenciosamente,
-                        <br><br>
-                        <b>Secretaria de Fomento e Incentivo à Cultura</b>
-                        <br>
-                        <b>Ministério da Cidadania</b>
                     </body>
                 </html>';
     return utf8_decode($html);
@@ -805,12 +770,6 @@ function emailAprovacaoBeneficiariaHTML()
                         Há uma lista das credenciadas pelo MinC na página inicial do sistema Vale-Cultura: <a href="#URL#">#URL#</a>
                         <br>
                         Em caso de dúvidas, sugestões, reclamações ou denúncias, envie e-mail para <a href="mailto:' . $links['email-vale-cultura'] . '">' . $links['email-vale-cultura'] . '</a>.
-                        <br><br>
-                        Atenciosamente,
-                        <br><br>
-                        <b>Secretaria de Fomento e Incentivo à Cultura</b>
-                        <br>
-                        <b>Ministério da Cidadania</b>
                     </body>
                 </html>';
     return utf8_decode($html);
@@ -834,12 +793,6 @@ function emailReprovacaoBeneficiariaHTML()
                         Portanto, pedimos que acesse o sistema para verificar o motivo da reprovação.
                         <br>
                         Entre no site: <a href="#URL#" target="_blank" style="text-decoration: underline;">#URL#</a> e faça o seu login para consultar.
-                        <br><br>
-                        Atenciosamente,
-                        <br><br>
-                        <b>Secretaria de Fomento e Incentivo à Cultura</b>
-                        <br>
-                        <b>Ministério da Cidadania</b>
                     </body>
                 </html>';
     return utf8_decode($html);
@@ -864,12 +817,6 @@ function emailAprovacaoBeneficiariaParaOperadoraHTML()
                         #NOMEBENEFICIARIA# - #CNPJBENEFICIARIA# 
                         <br><br>
                         #RESPONSAVEIS# 
-                        <br><br>
-                        Atenciosamente,
-                        <br><br>
-                        <b>Secretaria de Fomento e Incentivo à Cultura</b>
-                        <br>
-                        <b>Ministério da Cidadania</b>
                     </body>
                 </html>';
     return utf8_decode($html);
