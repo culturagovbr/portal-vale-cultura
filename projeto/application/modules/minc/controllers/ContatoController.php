@@ -38,7 +38,7 @@ class Minc_ContatoController extends GenericController
                 $htmlEmail = str_replace('#ASSUNTO#', $assunto, $htmlEmail);
                 $htmlEmail = str_replace('#MENSAGEM#', $mensagem, $htmlEmail);
 
-                if ($modelEmail->enviarEmail('valecultura@turismo.gov.br', 'Contato via sistema - Vale Cultura', $htmlEmail)) {
+                if ($modelEmail->enviarEmail('valecultura@cultura.gov.br', 'Contato via sistema - Vale Cultura', $htmlEmail)) {
                     $retorno['mensagem'] = '<b>E-mail enviado com sucesso!</b>';
                 } else {
                     $retorno['mensagem'] = '<b style="color: #f00">Erro no envio do E-mail</b>';
