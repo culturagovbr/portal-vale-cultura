@@ -584,7 +584,7 @@ function emailSenhaHTML()
                         Em caso de dúvidas, sugestões, reclamações ou denúncias, envie e-mail para <a href="mailto:#EMAIL#" style="text-decoration: underline;">#EMAIL#</a>.
                     </body>
                 </html>';
-    return $html;
+    return utf8_decode($html);
 }
 
 function emailNoSenhaHTML()
@@ -611,7 +611,7 @@ function emailNoSenhaHTML()
                         Em caso de dúvidas, sugestões, reclamações ou denúncias, envie e-mail para <a href="mailto:#EMAIL#" style="text-decoration: underline;">#EMAIL#</a>.
                     </body>
                 </html>';
-    return $html;
+    return utf8_decode($html);
 }
 
 function emailContatoHTML()
@@ -663,7 +663,7 @@ function emailContatoHTML()
                        
                     </body>
                 </html>';
-    return $html;
+    return utf8_decode($html);
 }
 
 function emailNovaSenhaHTML()
@@ -688,7 +688,7 @@ function emailNovaSenhaHTML()
                         Se precisar de ajuda, envie e-mail para <a href="mailto:#EMAIL#" style="text-decoration: underline;">#EMAIL#</a>.
                     </body>
                 </html>';
-    return $html;
+    return utf8_decode($html);
 }
 
 function emailAprovacaoHTML()
@@ -709,7 +709,7 @@ function emailAprovacaoHTML()
                         Para consultar o certificado de inscrição, acesse <a href="#URL#" target="_blank" style="text-decoration: underline;">#URL#</a>.
                     </body>
                 </html>';
-    return $html;
+    return utf8_decode($html);
 }
 
 function emailAprovacaoOperadoraHTML()
@@ -734,7 +734,7 @@ function emailAprovacaoOperadoraHTML()
                         Para consultar o certificado de inscrição, acesse <a href="#URL#" target="_blank" style="text-decoration: underline;">#URL#</a> e faça o seu login.
                     </body>
                 </html>';
-    return $html;
+    return utf8_decode($html);
 }
 
 
@@ -772,7 +772,7 @@ function emailAprovacaoBeneficiariaHTML()
                         Em caso de dúvidas, sugestões, reclamações ou denúncias, envie e-mail para <a href="mailto:' . $links['email-vale-cultura'] . '">' . $links['email-vale-cultura'] . '</a>.
                     </body>
                 </html>';
-    return $html;
+    return utf8_decode($html);
 }
 
 function emailReprovacaoBeneficiariaHTML()
@@ -795,7 +795,7 @@ function emailReprovacaoBeneficiariaHTML()
                         Entre no site: <a href="#URL#" target="_blank" style="text-decoration: underline;">#URL#</a> e faça o seu login para consultar.
                     </body>
                 </html>';
-    return $html;
+    return utf8_decode($html);
 }
 
 function emailAprovacaoBeneficiariaParaOperadoraHTML()
@@ -819,5 +819,5 @@ function emailAprovacaoBeneficiariaParaOperadoraHTML()
                         #RESPONSAVEIS# 
                     </body>
                 </html>';
-    return $html;
+    return utf8_decode($html);
 }

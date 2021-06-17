@@ -40,7 +40,8 @@
             <tr>
                 <td colspan="3" style="text-align: center;">
                     <p style="font-size: 16px;">
-                        Este cadastro È especÌfico para empresas interessadas em oferecer o Vale-Cultura aos seus funcion·rios.
+                        Este cadastro &eacute; espec&iacute;fico para empresas interessadas em oferecer o Vale-Cultura aos seus
+                        funcion&aacute;rios.
                     </p>
                     <p style="font-size: 16px; color: red;">
                         Trabalhador/a, se deseja receber o Vale-Cultura
@@ -55,7 +56,14 @@
                 <td colspan="3" style="text-align: center;"><h3 class="footer-headline"><span>Dados da Empresa Benefici&aacute;ria</span></h3></td>
             </tr>
             <tr>
-                <th valign="top" class="destacar bold top-left" colspan="3">CNPJ: </th>
+                <th valign="top" class="destacar bold top-left" colspan="3">
+                    CNPJ:
+                    <a href="#myModalSobreBeneficiaria" role="" class="nextPassB"
+                       data-val="passo1B" data-toggle="modal">
+                        <img src="<?php echo $this->baseUrl('img/help-icon.png'); ?>"
+                             style="width: 25px; height: 25px; cursor: pointer; margin-top: 0;border: 0; padding: 0;"
+                             title="Sobre os Deveres da Benefici&aacute;ria"/></a>
+                </th>
             </tr>
             <tr>
                 <td valign="top" width="33%"><input name="EMPRESA_CNPJ" id="EMPRESA_CNPJ" type="text" class="input_simples w200 cnpj" /></td>
@@ -75,8 +83,9 @@
                 <td valign="top"><label id="NATUREZA_JURIDICA">&nbsp;</label></td>
             </tr>
             <tr class="descEmpresa">
-                <th valign="top">Atividade Econ&ocirc;mica Principal: </th>
-                <th valign="top" colspan="2">Atividades Econ&ocirc;micas Secund&aacute;rias: </th>
+                <th valign="top">Atividade Econ&ocirc;mica Principal:</th>
+                <th valign="top">Atividades Econ&ocirc;micas Secund&aacute;rias:</th>
+                <th valign="top">Situa&ccedil;&atilde;o:</th>
             </tr>
             <tr class="descEmpresa">
                 <td valign="top"><label id="CNAE_PRIMARIO">&nbsp;</label></td>
@@ -184,11 +193,67 @@
                 <td>Total de funcion&aacute;rios:</td>
                 <td><input type="text" id="totalFuncionarios" disabled="true" class="input_simples" /></td>
             </tr>
+
+            <tr>
+                <td colspan="3" valign="top" class="destacar bold">
+                    <input type="radio" value="T" name="AUTORIZAR_VALE_TODOS_FUNCIONARIOS"
+                           class="AUTORIZAR_VALE_TODOS_FUNCIONARIOS" checked="checked"/>
+                    Voc&ecirc; deseja ofertar o Vale-Cultura a todos os funcion&aacute;rios da empresa?
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3" valign="top" class="destacar bold">
+                    <input type="radio" value="S" name="AUTORIZAR_VALE_TODOS_FUNCIONARIOS"
+                           class="AUTORIZAR_VALE_TODOS_FUNCIONARIOS"/>
+                    Voc&ecirc; deseja, inicialmente, ofertar o Vale-Cultura aos funcion&aacute;rios da empresa que recebem at&eacute; cinco
+                    sal&aacute;rios m&iacute;nimos?
+                </td>
+            </tr>
         </table>
 
         <table width="95%" align="center" class="tabela">
             <tr>
-                <th colspan="3" style="text-align: center;"><h3 class="footer-headline"><span>RESPONS¡VEL PELA GEST√O DO PROGRAMA JUNTO AO MINC</span></h3></th>
+                <th style="text-align: center;">
+                    <h3 class="footer-headline"><span>ESCOLHA DA OPERADORA</span></h3>
+                </th>
+            </tr>
+
+            <tr>
+                <td valign="top" class="destacar bold">
+                    <b>Escolha uma entre as empresas operadoras cadastradas e autorizadas a emitir o cart&atilde;o Vale-cultura
+                        dos seus funcion&aacute;rios.</b>
+                    <a href="#myModalSobreListaOperadoras"
+                       role="button"
+                       class="" data-toggle="modal">
+                        <img src="<?php echo $this->baseUrl('img/help-icon.png'); ?>"
+                             style="width: 25px; height: 25px; cursor: pointer; margin-top: 0;border: 0; padding: 0;"
+                             title="Sobre a Lista de Operadoras"/></a>
+
+                    <div id="divOperadoras">
+                        <h4>Nome</h4>
+                        <div id="divOperadorasUl">
+                            <ul>
+                                <?php foreach ($this->operadorasAtivas as $operadora) { ?>
+                                    <li>
+                                        <input type="radio" name="OPERADORA_VALE" class="OPERADORA_VALE"
+                                               value="<?php echo $operadora['idOperadora'] ?>"/>
+                                        &nbsp;<?php
+                                        $nmFantasia = trim($operadora['nmFantasia']);
+                                        $strNome = empty($nmFantasia) ? $operadora['nmRazaoSocial'] : $nmFantasia;
+                                        echo $strNome;
+                                        ?>
+                                    </li>
+                                <?php } ?>
+                            </ul>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+        <table width="95%" align="center" class="tabela">
+            <tr>
+                <th colspan="3" style="text-align: center;"><h3 class="footer-headline"><span>RESPONS√ÅVEL PELA GEST√ÉO DO PROGRAMA JUNTO AO MINC</span></h3></th>
             </tr>
             <tr>
                 <td colspan="3">
@@ -196,7 +261,7 @@
                 </td>
             </tr>
             <tr>
-                <td colspan="3" class="destacar bold">Informe abaixo os dados da pessoa respons·vel pela inserÁ„o das informaÁıes da empresa junto ao MinistÈrio da Cultura.</td>
+                <td colspan="3" class="destacar bold">Informe abaixo os dados da pessoa respons√°vel pela inser√ß√£o das informa√ß√µes da empresa junto ao Minist√©rio da Cultura.</td>
             </tr>
             <tr>
                 <td valign="top" class="w100">CPF: <img src="<?php echo $this->baseUrl('img/ajax-loader_4.gif');?>" id="imgPF" style="display: none;" /></td>
@@ -242,7 +307,7 @@
             <tr>
                 <td colspan="3" valign="top">
                     <input type="checkbox" name="AUTORIZO_MINC" id="AUTORIZO_MINC" checked="checked"/>
-                    Autorizo o MinC a divulgar que sou empresa benefici·ria cadastrada junto ao Programa de Cultura do Trabalhador.
+                    Autorizo o MinC a divulgar que sou empresa benefici√°ria cadastrada junto ao Programa de Cultura do Trabalhador.
                 </td>
             </tr>
             <tr>
@@ -266,16 +331,25 @@
             </tr>
             <tr>
                 <td>
-                    <input type="checkbox" name="ConfimaLei" id="ConfimaLei" style="float:left" />
-                    <div>&nbsp; Confirmo sob pena de lei a veracidade de todas as informa&ccedil;&otilde;es prestadas neste cadastro.</div>
+                    <input type="checkbox" name="ConfimaRegras" id="ConfimaRegras" style="float:left"/>
+                    <div>&nbsp; Li e estou de acordo com as regras do Programa de Cultura do Trabalhador e confirmo, sob
+                        as penas da lei, a veracidade de todas as informa&ccedil;&otilde;es prestadas neste cadastro.
+                    </div>
                 </td>
             </tr>
             <tr>
-                <td>Digite o c&oacute;digo abaixo: <input name="captcha[input]" id="captcha[input]" class="input_simples" type="text"></td>
+                <td>
+                    <input type="checkbox" name="ConfimaSecult" id="ConfimaSecult" style="float:left"/>
+                    <div>&nbsp; Autorizo o MC a divulgar os dados da empresa como benefici&aacute;ria do Programa de
+                        Cultura do Trabalhador.
+                    </div>
+                </td>
             </tr>
             <tr>
-                <td id="captcha" style="height: 80px">
-
+                <td>
+                    <input type="checkbox" name="ConfimaLei" id="ConfimaLei" style="float:left"/>
+                    <div>&nbsp; Confirmo sob pena de lei a veracidade de todas as informa&ccedil;&otilde;es prestadas neste cadastro.
+                    </div>
                 </td>
             </tr>
         </table>
@@ -301,13 +375,12 @@
 
 <div style="position: absolute; width: 80%; margin-top: -50px; z-index:9900; display: none;" id="myModal">
     <div class="alert alert-error">
-        <!--button type="button" class="close" onclick="$('#mascara2').fadeOut();" data-dismiss="alert">&times;</button-->
-        <strong>ATEN«√O!</strong> <br><br>
-        Prezado Benefici·rio,
+        <strong>ATEN&Ccedil;&atilde;O!</strong> <br><br>
+        Prezado Benefici&aacute;rio,
 
-        VocÍ n„o est· autorizando a liberaÁ„o do seu contato para nenhuma empresa operadora.
-        Isto poder· dificultar o contato da operadora com a sua empresa.
-        Favor entrar em contato com a empresa operadora de sua preferÍncia para viabilizar a contrataÁ„o dos serviÁos.
+        Voc&ecirc; n&atilde;o est&aacute; autorizando a libera&ccedil;&atilde;o do seu contato para nenhuma empresa operadora.
+        Isto poder&aacute; dificultar o contato da operadora com a sua empresa.
+        Favor entrar em contato com a empresa operadora de sua prefer&ecirc;ncia para viabilizar a contrata&ccedil;&atilde;o dos servi&ccedil;os.
         <br><br>
         <button class="btn btn-mini btn-success" onclick="enviarForm()" value="Submit">Confirmar</button>
         <button class="btn btn-mini btn-warning" onclick="$('#myModal').fadeOut(); $('#mascara2').fadeOut();">Cancelar</button>
@@ -590,7 +663,7 @@
 
         $("#AUTORIZO_MINC").change(function(){
             if(!$(this).is(':checked')){
-                var c = confirm('Tem certeza que n„o quer ter o nome da sua empresa no rol de benefici·rias que concedem o Vale-Cultura aos seus trabalhadores?');
+                var c = confirm('Tem certeza que nÔøΩo quer ter o nome da sua empresa no rol de beneficiÔøΩrias que concedem o Vale-Cultura aos seus trabalhadores?');
                 if(c == false){
                     $(this).prop('checked', true);
                 }
@@ -599,8 +672,46 @@
 
     });
 
-    jQuery.validator.addMethod('emailcheck', function(value, element) {
-        if ($('#RESPONSAVEL_EMAIL_COMFIRMA').val() != $('#RESPONSAVEL_EMAIL').val()) {
+    // Check for the various File API support.
+    if (window.File && window.FileReader && window.FileList && window.Blob) {
+        // Great success! All the File APIs are supported.
+    } else {
+        alert('The File APIs are not fully supported in this browser.');
+    }
+
+    function handleFileSelect(evt) {
+        //alert(123);
+        var files = evt.target.files; // FileList object
+
+        // files is a FileList of File objects. List some properties.
+        var output = [];
+        for (var i = 0, f; f = files[i]; i++) {
+            if (f.type !== 'application/pdf') {
+                $('#ERROR_' + $(evt.currentTarget).attr('id')).html("Apenas aquivos no formato PDF s&atilde;o validos");
+                $('#ERROR_' + $(evt.currentTarget).attr('id')).show();
+            }
+
+            if (f.size >= 5242880) {
+                $('#ERROR_' + $(evt.currentTarget).attr('id')).html("Tamanho maximo do arquivo deve ser de 5mb");
+                $('#ERROR_' + $(evt.currentTarget).attr('id')).show();
+            }
+            if (f.size < 5242880 && f.type === 'application/pdf') {
+                $('#ERROR_' + $(evt.currentTarget).attr('id')).hide();
+            }
+        }
+    }
+
+    document.getElementById('ANEXO_11').addEventListener('change', handleFileSelect, false);
+
+    jQuery.validator.addMethod('emailcheck', function (value, element) {
+        if ($('#RESPONSAVEL_EMAIL_CONFIRMA').val() != $('#RESPONSAVEL_EMAIL').val()) {
+            return false;
+        }
+        return true;
+    }, 'Verifique o E-mail');
+
+    jQuery.validator.addMethod('emailnaoempresacheck', function (value, element) {
+        if ($('#RESPONSAVEL_NAO_EMPRESA_EMAIL_CONFIRMA').val() != $('#RESPONSAVEL_NAO_EMPRESA_EMAIL').val()) {
             return false;
         }
         return true;
@@ -660,7 +771,7 @@
 
     function gerarCaptcha() {
         $.ajax({
-            type: "GET",
+            type: 'GET',
             url: '<?php echo $this->url(array('module' => 'operadora', 'controller' => 'cadastro', 'action' => 'gerarcaptcha')); ?>',
             success: function(data) {
                 $('#captcha').html(data);
@@ -801,8 +912,8 @@
         $('#RESPONSAVEL_EMAIL').attr('disabled', true);
         $('#RESPONSAVEL_FONE').attr('disabled', true);
         $('#RESPONSAVEL_FAX').attr('disabled', true);
-        $('#RESPONSAVEL_EMAIL_COMFIRMA').attr('disabled', true);
-        // Bot„o de Salvar
+        $('#RESPONSAVEL_EMAIL_CONFIRMA').attr('disabled', true);
+        // BotÔøΩo de Salvar
         $('#btnSalvar').hide();
     }
 
@@ -821,8 +932,8 @@
         $('#RESPONSAVEL_EMAIL').attr('disabled', false);
         $('#RESPONSAVEL_FONE').attr('disabled', false);
         $('#RESPONSAVEL_FAX').attr('disabled', false);
-        $('#RESPONSAVEL_EMAIL_COMFIRMA').attr('disabled', false);
-        // Bot„o de Salvar
+        $('#RESPONSAVEL_EMAIL_CONFIRMA').attr('disabled', false);
+        // BotÔøΩo de Salvar
         $('#btnSalvar').show();
     }
 

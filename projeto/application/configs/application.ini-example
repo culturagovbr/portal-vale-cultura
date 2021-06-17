@@ -66,7 +66,7 @@ link.vale-cultura = "http://vale.cultura.gov.br"
 link.sobre-vale-cultura = "http://cultura.gov.br/vale-cultura"
 link.trabalhador-vale-cultura = "http://cultura.gov.br/vale-cultura/para-o-trabalhador"
 link.operadora-vale-cultura = "http://cultura.gov.br/vale-cultura/para-a-empresa-beneficiaria"
-link.email-vale-cultura = "valecultura@turismo.gov.br"
+link.email-vale-cultura = "valecultura@cidadania.gov.br"
 link.legislacao-vale-cultura = "http://cultura.gov.br/documentos/legislacao-vale-cultura"
 link.manual-vale-cultura = "downloads/Manual_Vale_Cultura_v6.0.pdf"
 
@@ -76,7 +76,7 @@ email.smtp-host = 'mailapp.cultura.gov.br'
 email.smtp-username = 'srv_salic'
 email.smtp-password = 'emailSalic'
 email.smtp-port = 25
-email.smtp-from-email = 'valecultura@turismo.gov.br'
+email.smtp-from-email = 'valecultura@cidadania.gov.br'
 
 [homologacao:producao]
 
