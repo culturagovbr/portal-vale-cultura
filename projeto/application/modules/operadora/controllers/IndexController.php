@@ -8,10 +8,10 @@ class Operadora_IndexController extends GenericController {
 
     public function init() {
 
-        // Layout Padrï¿½o
+        // Layout Padrão
         $this->view->layout()->setLayout('layout');
 
-        // Tï¿½tulo
+        // Título
         $this->view->assign('titulo', 'Operadora');
 
         parent::autenticar(array('R','A'));
@@ -45,7 +45,7 @@ class Operadora_IndexController extends GenericController {
             }else{
                $sessao["operadora"]     = '';
                $session->usuario        = $sessao;
-                parent::message('Operadora nï¿½o foi localizada!', '/minc/admin', 'error');
+                parent::message('Operadora não foi localizada!', '/minc/admin', 'error');
             }
         }
 
@@ -74,7 +74,7 @@ class Operadora_IndexController extends GenericController {
         $dadosOperadora = array();
         $idOperadora = $this->_sessao['operadora'];
         if (empty($idOperadora)) {
-            parent::message('Operadora nï¿½o foi localizada!', '/minc/index', 'error');
+            parent::message('Operadora não foi localizada!', '/minc/index', 'error');
         }
 
         // Dados da operadora
@@ -142,7 +142,7 @@ class Operadora_IndexController extends GenericController {
         }
         $this->view->assign('emailInstitucional', $emailInstitucional);
 
-        // Envia as informaï¿½ï¿½es para a view
+        // Envia as informações para a view
         $this->view->assign('operadora', $dadosOperadora);
         $this->view->assign('historico', $historico);
     }
@@ -168,19 +168,19 @@ class Operadora_IndexController extends GenericController {
             $COMPLEMENTO    = $this->getRequest()->getParam('COMPLEMENTO');
 
             if($TELEFONE == ''){
-                parent::message('O campo telefone ï¿½ obrigatï¿½rio!', '/operadora/index/telefones/operadora/'.$idOperadora, 'error');
+                parent::message('O campo telefone é obrigatório!', '/operadora/index/telefones/operadora/'.$idOperadora, 'error');
             }
 
             if($DDD){
                 $verificaDDD = $modelDDD->select(array('CD_DDD = ?' => $DDD));
                 if(count($verificaDDD) < 1 ){
-                    parent::message('DDD inv&aacute;lido!', '/operadora/index/telefones/operadora/'.$idOperadora, 'error');
+                    parent::message('DDD inválido!', '/operadora/index/telefones/operadora/'.$idOperadora, 'error');
                 }
             }
 
             try {
 
-                // Verificar se jï¿½ existe
+                // Verificar se já existe
                 $where = array(
                     'ID_PESSOA = ?'         => $idOperadora,
                     'SG_PAIS = ?'           => 'BRA',
@@ -210,7 +210,7 @@ class Operadora_IndexController extends GenericController {
                     $modelTelefone->insert($Cols);
                     parent::message('Telefone cadastrado com sucesso!', '/operadora/index/telefones/operadora/'.$idOperadora, 'confirm');
                 }else{
-                    parent::message('O Telefone informado jï¿½ estï¿½ cadastrado!', '/operadora/index/telefones/operadora/'.$idOperadora, 'error');
+                    parent::message('O Telefone informado já está cadastrado!', '/operadora/index/telefones/operadora/'.$idOperadora, 'error');
                 }
 
             } catch (Exception $exc) {
@@ -219,7 +219,7 @@ class Operadora_IndexController extends GenericController {
             }
 
         }else{
-            parent::message('Dados nï¿½o encontrados!', '/operadora/index/telefones/operadora/'.$idOperadora, 'alert');
+            parent::message('Dados não encontrados!', '/operadora/index/telefones/operadora/'.$idOperadora, 'alert');
         }
 
     }
@@ -232,12 +232,12 @@ class Operadora_IndexController extends GenericController {
         $IDTELEFONE     = $this->getRequest()->getParam('IDTELEFONE');
 
         if($IDTELEFONE == ''){
-            parent::message('O campo telefone ï¿½ obrigatï¿½rio!', '/operadora/index/telefones/operadora/'.$idOperadora, 'alert');
+            parent::message('O campo telefone é obrigatório!', '/operadora/index/telefones/operadora/'.$idOperadora, 'alert');
         }
 
         try {
             $modelTelefone->delete($IDTELEFONE);
-            parent::message('Telefone excluï¿½do com sucesso!', '/operadora/index/telefones/operadora/'.$idOperadora, 'confirm');
+            parent::message('Telefone excluído com sucesso!', '/operadora/index/telefones/operadora/'.$idOperadora, 'confirm');
 
         } catch (Exception $exc) {
             parent::message('Erro ao excluir o telefone!', '/operadora/index/telefones/operadora/'.$idOperadora, 'error');
@@ -265,7 +265,7 @@ class Operadora_IndexController extends GenericController {
 
             $logradouro = $modelLogradouro->selectEndereco(array('NR_CEP = ?' => "" . $NRCEP . ""));
             if (count($logradouro) < 1 || strlen($NRCEP) != 8) {
-                parent::message('CEP invï¿½lido', '/operadora/index/dadosoperadora/', 'error');
+                parent::message('CEP inválido', '/operadora/index/dadosoperadora/', 'error');
             } else {
                 $IDLOGRADOURO = $logradouro[0]['ID_LOGRADOURO'];
                 $STLOGRADOURO = $logradouro[0]['ST_LOGRADOURO'];
@@ -301,7 +301,7 @@ class Operadora_IndexController extends GenericController {
 
 
                     if(!validaEmail($EMAILINSTITUCIONAL)){
-                        parent::message('O Email institucional ï¿½ invï¿½lido!', '/operadora/index/dadosoperadora/', 'error');
+                        parent::message('O Email institucional é inválido!', '/operadora/index/dadosoperadora/', 'error');
                     }
 
                     $dadosEmail = array(
@@ -390,7 +390,7 @@ class Operadora_IndexController extends GenericController {
                 $dadosOperadora['Municipio']                = $op->nmMunicipio;
             }
 
-            // Dados do responsï¿½vel da operadora
+            // Dados do responsável da operadora
             $modelPessoaVinculada = new Application_Model_PessoaVinculada();
 
             $where = array(
@@ -410,15 +410,15 @@ class Operadora_IndexController extends GenericController {
                                 <tr>
                                     <td align="center" width="400px">
                                         '.uc_latin1($re->nmPessoaFisica).'<br>
-                                        Nome do Responsï¿½vel pela Empresa junto ao Ministï¿½rio da Cultura
+                                        Nome do Responsável pela Empresa junto ao Ministério da Cultura
                                     </td>
                                     <td align="center" width="400px">
                                         '.uc_latin1($re->nrCpf).'<br>
-                                        CPF do Responsï¿½vel pela Empresa junto ao Ministï¿½rio da Cultura
+                                        CPF do Responsável pela Empresa junto ao Ministério da Cultura
                                     </td>
                                     <td align="center" width="400px">
                                         '.uc_latin1($re->nmCbo).'<br>
-                                        Cargo do Responsï¿½vel pela Empresa junto ao Ministï¿½rio da Cultura
+                                        Cargo do Responsável pela Empresa junto ao Ministério da Cultura
                                     </td>
                                 </tr>
                             </table><br><br>';
@@ -474,7 +474,7 @@ class Operadora_IndexController extends GenericController {
             foreach ($_FILES as $k => $v) {
                 if ($k == 'ANEXO_1' || $k == 'ANEXO_2' || $k == 'ANEXO_3' || $k == 'ANEXO_4' || $k == 'ANEXO_5' || $k == 'ANEXO_6' || $k == 'ANEXO_7' || $k == 'ANEXO_8') {
                     if ($_FILES[$k]['error'] != 0) {
-                        $ERROR['ERROR'] = 'Documento obrigatï¿½rio nï¿½o enviado';
+                        $ERROR['ERROR'] = 'Documento obrigatório não enviado';
                     }
                 }
                 if ($_FILES[$k]['error'] == 0) {
@@ -484,7 +484,7 @@ class Operadora_IndexController extends GenericController {
                     }
 
                     if (strpos($_FILES[$k]['type'], 'pdf') === false) {
-                        $ERROR['ERROR'] = 'Apenas aquivos no formato PDF sï¿½o validos';
+                        $ERROR['ERROR'] = 'Apenas aquivos no formato PDF são validos';
                     }
                 } else {
                     if ($_FILES[$k]['error'] != 4) {
@@ -515,7 +515,7 @@ class Operadora_IndexController extends GenericController {
                             );
                             $acao = 'update';
                         } else {
-                            parent::message('Sem permissï¿½o para substituiï¿½ï¿½o', '/operadora/index/arquivos/', 'error');
+                            parent::message('Sem permissão para substituição', '/operadora/index/arquivos/', 'error');
                             return;
                         }
                     } else {
@@ -610,7 +610,7 @@ class Operadora_IndexController extends GenericController {
 
         // Validando Form
         if ($IDPF == '0') {
-            parent::message('CPF nï¿½o encontrado!', '/operadora/index/novo-responsavel', 'error');
+            parent::message('CPF não encontrado!', '/operadora/index/novo-responsavel', 'error');
         }
 
         if (strlen($NRTELEFONE) < 8) {
@@ -620,7 +620,7 @@ class Operadora_IndexController extends GenericController {
         if($CDDDD){
             $verificaDDD = $modelDDD->select(array('CD_DDD = ?' => $CDDDD));
             if(count($verificaDDD) == 0 ){
-                parent::message('DDD inv&aacute;lido!', '/operadora/index/novo-responsavel', 'error');
+                parent::message('DDD inválido!', '/operadora/index/novo-responsavel', 'error');
             }
         }
 
@@ -629,7 +629,7 @@ class Operadora_IndexController extends GenericController {
         }
 
         if (!validaEmail($DSEMAIL)) {
-            parent::message('Email invï¿½lido!', '/operadora/index/novo-responsavel', 'error');
+            parent::message('Email inválido!', '/operadora/index/novo-responsavel', 'error');
         }
 
 //        x($this->getRequest()->getParams());
@@ -639,11 +639,11 @@ class Operadora_IndexController extends GenericController {
 
         try {
 
-            // Vincular o responsï¿½vel
+            // Vincular o responsável
             $idPessoaFisica     = $IDPF;
             $idPessoaJuridica   = $idOperadora;
 
-            //Verifica se jï¿½ existe esse nï¿½mero cadastrado
+            //Verifica se já existe esse número cadastrado
             $where = array(
                 'ID_PESSOA = ?'         => $idPessoaFisica,
                 'SG_PAIS = ?'           => 'BRA',
@@ -668,7 +668,7 @@ class Operadora_IndexController extends GenericController {
             }
 
             if (strlen($NRFAX) > 7) {
-                //Verifica se jï¿½ existe esse nï¿½mero cadastrado
+                //Verifica se já existe esse número cadastrado
                 $where = array(
                     'ID_PESSOA = ?'         => $idPessoaFisica,
                     'SG_PAIS = ?'           => 'BRA',
@@ -692,7 +692,7 @@ class Operadora_IndexController extends GenericController {
                 }
             }
 
-            // Verificar se jï¿½ existe o email
+            // Verificar se já existe o email
             $where = array(
                 'ID_PESSOA = ?'             => $idPessoaFisica,
                 'DS_EMAIL = ?'              => $DSEMAIL,
@@ -719,7 +719,7 @@ class Operadora_IndexController extends GenericController {
             //Inserindo CBO do responsavel
             if ($CDCBO) {
 
-                // Verifica se jï¿½ existe esse registro para nï¿½o duplicar
+                // Verifica se já existe esse registro para não duplicar
                 $whereCDCBO = array(
                         'ID_PESSOA_FISICA = ?'   => $idPessoaFisica,
                         'ID_PESSOA_JURIDICA = ?' => $idPessoaJuridica,
@@ -786,7 +786,7 @@ class Operadora_IndexController extends GenericController {
                 $enviaEmail = true;
             }
 
-            //Verifica se usuario jï¿½ tem o perfil
+            //Verifica se usuario já tem o perfil
             $where = array(
                 'ID_USUARIO = ?'    => $idUsuario,
                 'ID_PERFIL   = ?'   => 3
@@ -804,7 +804,7 @@ class Operadora_IndexController extends GenericController {
 
             if ($this->_sessao["PerfilGeral"] != 'A') {
 
-                //Cria Situaï¿½ï¿½o para a Operadora
+                //Cria Situação para a Operadora
                 $Cols = array(
                     'ID_PESSOA'                 => $idPessoaJuridica,
                     'ID_USUARIO'                => $idUsuario,
@@ -1061,7 +1061,7 @@ class Operadora_IndexController extends GenericController {
         if($dddFone){
             $verificaDDD = $modelDDD->select(array('CD_DDD = ?' => $dddFone));
             if(count($verificaDDD) == 0 ){
-                parent::message('DDD inv&aacute;lido!', 'operadora/index/editar-responsavel/id/'.$idResponsavel, 'error');
+                parent::message('DDD inválido!', 'operadora/index/editar-responsavel/id/'.$idResponsavel, 'error');
             }
         }
 
@@ -1244,10 +1244,10 @@ class Operadora_IndexController extends GenericController {
                 header("Content-Disposition: inline; filename= $arquivo");
                 $existente = readfile($uploaddir . $arquivo);
             } else {
-                parent::message('Arquivo nï¿½o encontrado', '/operadora/index/arquivos/', 'error');
+                parent::message('Arquivo não encontrado', '/operadora/index/arquivos/', 'error');
             }
         } else {
-            parent::message('Acesso nï¿½o permitido', '/operadora/index/arquivos/', 'error');
+            parent::message('Acesso não permitido', '/operadora/index/arquivos/', 'error');
         }
         die;
     }
@@ -1515,7 +1515,7 @@ class Operadora_IndexController extends GenericController {
             $eResponsavelOperadora = $modelPessoaVinculada->buscarDadosResponsavel($where);
 
             if ((count($eResponsavelOperadora) > 0) && ($ativacao == 'S')) {
-                parent::message('O nï¿½o responsï¿½vel jï¿½ estï¿½ ativo em outra operadora!', '/operadora/index/nao-responsavel/', 'error');
+                parent::message('O não responsável já está ativo em outra operadora!', '/operadora/index/nao-responsavel/', 'error');
             }
 
             $modelPessoaVinculada->update(array('ST_PESSOA_VINCULADA' => $tipoVinculo), $idOperadora, $idResponsavel);
@@ -1679,7 +1679,7 @@ class Operadora_IndexController extends GenericController {
         try {
             // Validando Form
             if ($IDPF == '0') {
-                throw new Exception('CPF nï¿½o encontrado!', 500);
+                throw new Exception('CPF não encontrado!', 500);
             }
 
             if (strlen($NRTELEFONE) < 8) {
@@ -1781,7 +1781,7 @@ class Operadora_IndexController extends GenericController {
             //Inserindo CBO do responsavel
             if ($CDCBO) {
 
-                // Verifica se jï¿½ existe esse registro para nï¿½o duplicar
+                // Verifica se já existe esse registro para não duplicar
                 $whereCDCBO = array(
                     'ID_PESSOA_FISICA = ?' => $idPessoaFisica,
                     'ID_PESSOA_JURIDICA = ?' => $idPessoaJuridica,
@@ -1802,7 +1802,7 @@ class Operadora_IndexController extends GenericController {
                 }
             }
 
-            //============== VINCULANDO EMPRESA E Nï¿½o RESPONSAVEL ==================
+            //============== VINCULANDO EMPRESA E Não RESPONSAVEL ==================
             //Verifica se ja existe vinculo
             $where = array(
                 'ID_PESSOA = ?' => $idPessoaJuridica,
@@ -1890,10 +1890,10 @@ class Operadora_IndexController extends GenericController {
             }
 
             $db->commit();
-            parent::message('Nï¿½o Responsï¿½vel cadastrado com sucesso!', '/operadora/index/nao-responsavel', 'confirm');
+            parent::message('Não Responsável cadastrado com sucesso!', '/operadora/index/nao-responsavel', 'confirm');
 
         } catch (Exception $exc) {
-            $mgs = $exc->getCode() == 500 ? $exc->getMessage() : 'Erro ao cadastrar o nï¿½o responsï¿½vel.';
+            $mgs = $exc->getCode() == 500 ? $exc->getMessage() : 'Erro ao cadastrar o não responsável.';
             $db->rollBack();
             parent::message($mgs, '/operadora/index/novo-nao-responsavel', 'error');
         }

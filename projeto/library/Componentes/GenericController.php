@@ -94,8 +94,8 @@ class GenericController extends Zend_Controller_Action {
     } // fecha message()
 
     /**
-     * Reescreve o mÃ©todo postDispatch() que ï¿½ responsï¿½vel 
-     * por executar uma aÃ§Ã£o apÃ³s a execuÃ§Ã£o de um mÃ©todo
+     * Reescreve o método postDispatch() que é responsável
+     * por executar uma ação após a execução de um método
      * @access public
      * @param void
      * @return void
