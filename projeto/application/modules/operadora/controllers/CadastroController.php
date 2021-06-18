@@ -101,7 +101,7 @@ class Operadora_CadastroController extends GenericController {
             if($CDDDD){
                 $verificaDDD = $modelDDD->select(array('CD_DDD = ?' => $CDDDD));
                 if(count($verificaDDD) == 0 ){
-                    $ERROR['DDDRESPONSAVEL'] = 'DDD do responsável é inv&aacute;lido!';
+                    $ERROR['DDDRESPONSAVEL'] = 'DDD do responsável é inválido!';
                 }
             }
 
@@ -109,7 +109,7 @@ class Operadora_CadastroController extends GenericController {
 
                 $verificaDDD = $modelDDD->select(array('CD_DDD = ?' => $DDD_SAC));
                 if(count($verificaDDD) == 0 ){
-                    $ERROR['DDD'] = 'DDD inv&aacute;lido!';
+                    $ERROR['DDD'] = 'DDD inválido!';
                 }
             }
 
@@ -122,21 +122,21 @@ class Operadora_CadastroController extends GenericController {
             }
 
             if (!$this->getRequest()->getParam('Confirmo_mais_de_3_anos')) {
-                $ERROR['MINIMO'] = 'A empresa deve declarar ter qualifica&ccedil;&atilde;o t&eacute;cnica nos termos do inciso II do Art. 5&ordm; do Decreto n&ordm; 8.084 de 2013 e do Art. 4º da Instrução Normativa nº 02';
+                $ERROR['MINIMO'] = 'A empresa deve declarar ter qualificação técnica nos termos do inciso II do Art. 5&ordm; do Decreto n&ordm; 8.084 de 2013 e do Art. 4º da Instrução Normativa nº 02';
             }
 
             if (!$this->getRequest()->getParam('ConfimaLei')) {
-                $ERROR['LEI'] = 'Confirme a veracidade de todas as informa&ccedil;&otilde;es';
+                $ERROR['LEI'] = 'Confirme a veracidade de todas as informaç&otilde;es';
             }
 
             if (strlen($this->getRequest()->getParam('INICIO_COMERCIALIZACAO')) != 10 || !$this->isValidDate($INICIO_COMERCIALIZACAO)) {
-                $ERROR['INICIO_COMERCIALIZACAO'] = 'Data inv&aacute;lida';
+                $ERROR['INICIO_COMERCIALIZACAO'] = 'Data inválida';
             }
 
             $where = array('NR_CEP = ?' => "" . $NRCEP . "");
             $logradouro = $modelLogradouro->selectEndereco($where);
             if (count($logradouro) < 1 || strlen($NRCEP) != 8) {
-                $ERROR['CEP'] = 'CEP inv&aacute;lido';
+                $ERROR['CEP'] = 'CEP inválido';
             } else {
                 $IDLOGRADOURO = $logradouro[0]['ID_LOGRADOURO'];
                 $STLOGRADOURO = $logradouro[0]['ST_LOGRADOURO'];
@@ -144,7 +144,7 @@ class Operadora_CadastroController extends GenericController {
             }
 
             if (!$this->validaCPF($NRCPF)) {
-                $ERROR['CPF'] = 'CPF inv&aacute;lido';
+                $ERROR['CPF'] = 'CPF inválido';
             }
 
             if (strlen($NRTELEFONE) < 8) {
@@ -160,7 +160,7 @@ class Operadora_CadastroController extends GenericController {
             }
 
             if (!$this->isCnpjValid($NRCNPJ)) {
-                $ERROR['CNPJ'] = 'CNPJ inv&aacute;lido';
+                $ERROR['CNPJ'] = 'CNPJ inválido';
             }
 
             if($CDCBO < 1){
@@ -569,7 +569,7 @@ class Operadora_CadastroController extends GenericController {
 
                 $retorno['error'] = false;
             } else {
-                $retorno['error'] = 'CEP inv&aacute;lido';
+                $retorno['error'] = 'CEP inválido';
             }
             echo json_encode($retorno);
         }

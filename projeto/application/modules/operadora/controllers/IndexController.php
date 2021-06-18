@@ -174,7 +174,7 @@ class Operadora_IndexController extends GenericController {
             if($DDD){
                 $verificaDDD = $modelDDD->select(array('CD_DDD = ?' => $DDD));
                 if(count($verificaDDD) < 1 ){
-                    parent::message('DDD inv&aacute;lido!', '/operadora/index/telefones/operadora/'.$idOperadora, 'error');
+                    parent::message('DDD inválido!', '/operadora/index/telefones/operadora/'.$idOperadora, 'error');
                 }
             }
 
@@ -620,7 +620,7 @@ class Operadora_IndexController extends GenericController {
         if($CDDDD){
             $verificaDDD = $modelDDD->select(array('CD_DDD = ?' => $CDDDD));
             if(count($verificaDDD) == 0 ){
-                parent::message('DDD inv&aacute;lido!', '/operadora/index/novo-responsavel', 'error');
+                parent::message('DDD inválido!', '/operadora/index/novo-responsavel', 'error');
             }
         }
 
@@ -1061,7 +1061,7 @@ class Operadora_IndexController extends GenericController {
         if($dddFone){
             $verificaDDD = $modelDDD->select(array('CD_DDD = ?' => $dddFone));
             if(count($verificaDDD) == 0 ){
-                parent::message('DDD inv&aacute;lido!', 'operadora/index/editar-responsavel/id/'.$idResponsavel, 'error');
+                parent::message('DDD inválido!', 'operadora/index/editar-responsavel/id/'.$idResponsavel, 'error');
             }
         }
         
