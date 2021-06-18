@@ -52,7 +52,7 @@
                 </td>
             </tr>
             <tr>
-                <td colspan="3" style="text-align: center;"><h3 class="footer-headline"><span>Dados da Empresa Benefici&aacute;ria</span></h3></td>
+                <td colspan="3" style="text-align: center;"><h3 class="footer-headline"><span>Dados da Empresa Beneficiária</span></h3></td>
             </tr>
             <tr>
                 <th valign="top" class="destacar bold top-left" colspan="3">CNPJ: </th>
@@ -65,7 +65,7 @@
                 </td>
             </tr>
             <tr class="descEmpresa">
-                <th valign="top">Raz&atilde;o Social: </th>
+                <th valign="top">Razão Social: </th>
                 <th valign="top">Nome Fantasia: </th>
                 <th valign="top">Natureza Juridica: </th>
             </tr>
@@ -75,15 +75,15 @@
                 <td valign="top"><label id="NATUREZA_JURIDICA">&nbsp;</label></td>
             </tr>
             <tr class="descEmpresa">
-                <th valign="top">Atividade Econ&ocirc;mica Principal: </th>
-                <th valign="top" colspan="2">Atividades Econ&ocirc;micas Secund&aacute;rias: </th>
+                <th valign="top">Atividade Econômica Principal: </th>
+                <th valign="top" colspan="2">Atividades Econômicas Secundárias: </th>
             </tr>
             <tr class="descEmpresa">
                 <td valign="top"><label id="CNAE_PRIMARIO">&nbsp;</label></td>
                 <td valign="top" colspan="2"><label id="CNAE_SECUNDARIOS">&nbsp;</label></td>
             </tr>
             <tr class="descEmpresa">
-                <th class="destacar bold">Regime de tributa&ccedil;&atilde;o</th>
+                <th class="destacar bold">Regime de tributação</th>
                 <th class="destacar bold" colspan="2">Operadora</th>
             </tr>
             <tr class="descEmpresa">
@@ -108,7 +108,7 @@
 
         <table align="center" border="0" class="tabela" width="95%" background="<?php echo $this->baseUrl('img/benificiario.png') ?>">
             <tr>
-                <td colspan="3" style="text-align: center;"><h3 class="footer-headline">Endere&ccedil;o comercial</h3></td>
+                <td colspan="3" style="text-align: center;"><h3 class="footer-headline">Endereço comercial</h3></td>
             </tr>
             <tr>
                 <th valign="top" class="destacar bold">CEP:</th>
@@ -125,7 +125,7 @@
             </tr>
             <tr>
                 <th valign="top" class="destacar bold">Estado:</th>
-                <th valign="top" class="destacar bold">Munic&iacute;pio:</th>
+                <th valign="top" class="destacar bold">Município:</th>
                 <th valign="top" class="destacar bold">Bairro:</th>
             </tr>
             <tr>
@@ -146,7 +146,7 @@
                 </td>
             </tr>
             <tr>
-                <th valign="top" class="destacar bold">Endere&ccedil;o:</th>
+                <th valign="top" class="destacar bold">Endereço:</th>
                 <th valign="top" class="destacar bold">Complemento:</th>
                 <th valign="top" class="destacar bold">Numero:</th>
             </tr>
@@ -164,7 +164,7 @@
                 <td colspan="2" style="text-align: center;"><h3 class="footer-headline"><span>Faixas Salariais</span></h3></td>
             </tr>
             <tr>
-                <td colspan="2" class="destacar bold">Informe abaixo o n&uacute;mero de funcion&aacute;rios de acordo com a faixa salarial</td>
+                <td colspan="2" class="destacar bold">Informe abaixo o número de funcionários de acordo com a faixa salarial</td>
             </tr>
 
 
@@ -181,7 +181,7 @@
 
 
             <tr>
-                <td>Total de funcion&aacute;rios:</td>
+                <td>Total de funcionários:</td>
                 <td><input type="text" id="totalFuncionarios" disabled="true" class="input_simples" /></td>
             </tr>
         </table>
@@ -267,7 +267,7 @@
             <tr>
                 <td>
                     <input type="checkbox" name="ConfimaLei" id="ConfimaLei" style="float:left" />
-                    <div>&nbsp; Confirmo sob pena de lei a veracidade de todas as informa&ccedil;&otilde;es prestadas neste cadastro.</div>
+                    <div>&nbsp; Confirmo sob pena de lei a veracidade de todas as informaç&otilde;es prestadas neste cadastro.</div>
                 </td>
             </tr>
             <tr>
@@ -546,8 +546,8 @@
                     required: "Informe o CEP"
                 },
                 RESPONSAVEL_EMAIL: {
-                    required: "Informe o E-mail do respons&aacute;vel",
-                    email: "Digite um e-mail v&aacute;lido"
+                    required: "Informe o E-mail do responsável",
+                    email: "Digite um e-mail válido"
                 },
                 RESPONSAVEL_CPF: {
                     required: "Informe o CPF"
@@ -721,7 +721,7 @@
             }
         } else {
             //CEP INVALIDO
-            $('#EMPRESA_CEP_VALIDADOR').html('CEP inv&aacute;lido');
+            $('#EMPRESA_CEP_VALIDADOR').html('CEP inválido');
             $('#EMPRESA_CEP_VALIDADOR').fadeIn();
 
             var option = "<option> - Informe o CEP - </option>";

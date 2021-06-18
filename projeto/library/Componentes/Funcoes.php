@@ -308,13 +308,13 @@ function carregaHTMLCertificado()
             <tr>
                 <td align="center" colspan="3">
                     <img src="' . $img . '"><br><br>
-                    MINIST&Eacute;RIO DA CIDADANIA<br>
+                    MINISTéRIO DA CIDADANIA<br>
                     SECRETARIA DE FOMENTO E INCENTIVO &Agrave; CULTURA - SEFIC
                 </td>
             </tr>
             <tr>
                 <td align="center" colspan="3" style="padding: 10px;">
-                    CERTIFICADO DE INSCRI&Ccedil;&Atilde;O NO PROGRAMA DE CULTURA DO TRABALHADOR
+                    CERTIFICADO DE INSCRIçãO NO PROGRAMA DE CULTURA DO TRABALHADOR
                 </td>
             </tr>
             <tr>
@@ -341,7 +341,7 @@ function carregaHTMLCertificado()
                                 #CNPJ#
                             </td>
                             <td align="center" width="400px">
-                                Raz&atilde;o Social<br>
+                                Razão Social<br>
                                 #RAZAO#
                             </td>
                             <td align="center" width="400px">
@@ -362,7 +362,7 @@ function carregaHTMLCertificado()
                     <table style="width: 100%">
                         <tr>
                             <td align="center" width="400px">
-                                Endere&ccedil;o<br>
+                                Endereço<br>
                                 #ENDERECO#
                             </td>
                             <td align="center" width="400px">
@@ -386,7 +386,7 @@ function carregaHTMLCertificado()
                     <table style="width: 100%">
                         <tr>
                             <td align="center" width="400px">
-                                Pa&iacute;s<br>
+                                País<br>
                                 #PAIS#
                             </td>
                             <td align="center" width="400px">
@@ -394,7 +394,7 @@ function carregaHTMLCertificado()
                                 #ESTADO#
                             </td>
                             <td align="center" width="400px">
-                                Munic&iacute;pio<br>
+                                Município<br>
                                 #MUNICIPIO#
                             </td>
                     </table>
@@ -427,18 +427,18 @@ function carregaHTMLCertificadoBeneficiaria()
             <tr>
                 <td align="center" colspan="3">
                     <img src="' . $img . '"><br><br>
-                    MINIST&Eacute;RIO DA CIDADANIA<br>
+                    MINISTéRIO DA CIDADANIA<br>
                     SECRETARIA DE FOMENTO E INCENTIVO &Agrave; CULTURA - SEFIC
                 </td>
             </tr>
             <tr>
                 <td align="center" colspan="3" style="padding: 10px;">
-                    CERTIFICADO DE INSCRIÇ&Atilde;O NO PROGRAMA DE CULTURA DO TRABALHADOR
+                    CERTIFICADO DE INSCRIÇãO NO PROGRAMA DE CULTURA DO TRABALHADOR
                 </td>
             </tr>
             <tr>
                 <td align="center" colspan="3" style="padding: 10px 10px 20px 10px;">
-                    EMPRESA BENEFICI&Aacute;RIA
+                    EMPRESA BENEFICIáRIA
                 </td>
             </tr>
             <tr>
@@ -460,7 +460,7 @@ function carregaHTMLCertificadoBeneficiaria()
                                 #CNPJ#
                             </td>
                             <td align="center" width="400px">
-                                Raz&atilde;o Social<br>
+                                Razão Social<br>
                                 #RAZAO#
                             </td>
                             <td align="center" width="400px">
@@ -481,7 +481,7 @@ function carregaHTMLCertificadoBeneficiaria()
                     <table style="width: 100%">
                         <tr>
                             <td align="center" width="400px">
-                                Endere&ccedil;o<br>
+                                Endereço<br>
                                 #ENDERECO#
                             </td>
                             <td align="center" width="400px">
@@ -505,7 +505,7 @@ function carregaHTMLCertificadoBeneficiaria()
                     <table style="width: 100%">
                         <tr>
                             <td align="center" width="400px">
-                                Pa&iacute;s<br>
+                                País<br>
                                 #PAIS#
                             </td>
                             <td align="center" width="400px">
@@ -513,7 +513,7 @@ function carregaHTMLCertificadoBeneficiaria()
                                 #ESTADO#
                             </td>
                             <td align="center" width="400px">
-                                Munic&iacute;pio<br>
+                                Município<br>
                                 #MUNICIPIO#
                             </td>
                     </table>
@@ -544,7 +544,7 @@ function carregaHTMLCertificadoBeneficiaria()
                             </td>
                             <td align="center" width="400px">
                                 #CNAE_SECUNDARIOS#<br>
-                                Secund&aacute;rias (CNAE)
+                                Secundárias (CNAE)
                             </td>
                             <td align="center" width="400px">
                                 #NATJUR#<br>

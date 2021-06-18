@@ -51,7 +51,7 @@
                                     </tr>
                                     <tr>
                                         <td class="destacar bold">CNPJ:</td>
-                                        <td class="destacar bold" colspan="2">Raz&atilde;o Social:</td>
+                                        <td class="destacar bold" colspan="2">Razão Social:</td>
                                     </tr>
                                     <tr>
                                         <td><?php echo $this->mascara($this->operadora['nrCnpj'], 'cnpj'); ?></td>
@@ -67,7 +67,7 @@
                                     </tr>
                                     <tr>
                                         <td class="destacar bold">Nome Fantasia:</td>
-                                        <td class="destacar bold" colspan="2">Endere&ccedil;o:</td>
+                                        <td class="destacar bold" colspan="2">Endereço:</td>
                                     </tr>
                                     <tr>
                                         <td><?php echo $this->operadora['nmFantasia']; ?></td>
@@ -90,9 +90,9 @@
                                         <td colspan="2"><?php echo $this->mascara($this->operadora['cep'], 'cep'); ?></td>
                                     </tr>
                                     <tr>
-                                        <td class="destacar bold">Pa&iacute;s:</td>
+                                        <td class="destacar bold">País:</td>
                                         <td class="destacar bold">Estado:</td>
-                                        <td class="destacar bold">Munic&iacute;pio:</td>
+                                        <td class="destacar bold">Município:</td>
                                     </tr>
                                     <tr>
                                         <td><?php echo $this->operadora['Pais']; ?></td>
@@ -103,7 +103,7 @@
 
                                 <table class="table table-striped table-bordered bootstrap-datatable ">
                                     <div class="box-header">
-                                        <h2><i class="icon-edit"></i>Respons&aacute;vel pela Empresa</h2>
+                                        <h2><i class="icon-edit"></i>Responsável pela Empresa</h2>
                                         <div class="box-icon"></div>
                                     </div>
                                     <?php foreach($this->operadora['responsaveis'] as $resp):?>
@@ -179,12 +179,12 @@
                                 
                                 <table class="table table-striped table-bordered bootstrap-datatable ">
                                     <div class="box-header">
-                                        <h2><i class="icon-edit"></i>Hist&oacute;rico de Ativa&ccedil;&atilde;o / Inativa&ccedil;&atilde;o</h2>
+                                        <h2><i class="icon-edit"></i>Hist&oacute;rico de Ativação / Inativação</h2>
                                         <div class="box-icon"></div>
                                     </div>
                                     <tr>
                                         <td class="destacar bold"><strong>Status</strong></td>
-                                        <td class="destacar bold"><strong>Data da atualiza&ccedil;&atilde;o</strong></td>
+                                        <td class="destacar bold"><strong>Data da atualização</strong></td>
                                         <td class="destacar bold"><strong>Justificativa</strong></td>
                                     </tr>
                                     <?php foreach($this->historico as $h):?>
