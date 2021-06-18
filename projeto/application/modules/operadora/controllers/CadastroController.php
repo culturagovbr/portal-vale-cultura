@@ -126,7 +126,7 @@ class Operadora_CadastroController extends GenericController {
             }
 
             if (!$this->getRequest()->getParam('ConfimaLei')) {
-                $ERROR['LEI'] = 'Confirme a veracidade de todas as informaç&otilde;es';
+                $ERROR['LEI'] = 'Confirme a veracidade de todas as informações';
             }
 
             if (strlen($this->getRequest()->getParam('INICIO_COMERCIALIZACAO')) != 10 || !$this->isValidDate($INICIO_COMERCIALIZACAO)) {

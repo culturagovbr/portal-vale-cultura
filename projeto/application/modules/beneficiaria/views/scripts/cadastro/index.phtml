@@ -148,7 +148,7 @@
             <tr>
                 <th valign="top" class="destacar bold">Endereço:</th>
                 <th valign="top" class="destacar bold">Complemento:</th>
-                <th valign="top" class="destacar bold">Numero:</th>
+                <th valign="top" class="destacar bold">Número:</th>
             </tr>
             <tr>
                 <td valign="top">
@@ -267,11 +267,11 @@
             <tr>
                 <td>
                     <input type="checkbox" name="ConfimaLei" id="ConfimaLei" style="float:left" />
-                    <div>&nbsp; Confirmo sob pena de lei a veracidade de todas as informaç&otilde;es prestadas neste cadastro.</div>
+                    <div>&nbsp; Confirmo sob pena de lei a veracidade de todas as informações prestadas neste cadastro.</div>
                 </td>
             </tr>
             <tr>
-                <td>Digite o c&oacute;digo abaixo: <input name="captcha[input]" id="captcha[input]" class="input_simples" type="text"></td>
+                <td>Digite o código abaixo: <input name="captcha[input]" id="captcha[input]" class="input_simples" type="text"></td>
             </tr>
             <tr>
                 <td id="captcha" style="height: 80px">
@@ -508,7 +508,7 @@
 
         $.validator.addMethod('valueNotEquals', function(value, element, arg) {
             return arg !== value;
-        }, "Campo obrigat&oacute;rio");
+        }, "Campo obrigatório");
 
         $("#cadastroBeneficiaria").validate({
             rules: {
@@ -553,10 +553,10 @@
                     required: "Informe o CPF"
                 },
                 captchaForm: {
-                    required: "Campo obrigat&oacute;rio agaga"
+                    required: "Campo obrigatório agaga"
                 },
                 RESPONSAVEL_FONE: {
-                    required: "Campo obrigat&oacute;rio"
+                    required: "Campo obrigatório"
                 }
             },
             submitHandler: function(form) {
