@@ -533,7 +533,7 @@ class Beneficiaria_IndexController extends GenericController
         if ($CDDDD) {
             $verificaDDD = $modelDDD->select(array('CD_DDD = ?' => $CDDDD));
             if (count($verificaDDD) == 0) {
-                parent::message('DDD inv&aacute;lido!', '/beneficiaria/index/novo-responsavel', 'error');
+                parent::message('DDD inválido!', '/beneficiaria/index/novo-responsavel', 'error');
             }
         }
 
@@ -959,7 +959,7 @@ class Beneficiaria_IndexController extends GenericController
 
             $verificaDDD = $modelDDD->select(array('CD_DDD = ?' => $dddFone));
             if (count($verificaDDD) == 0) {
-                parent::message('DDD inv&aacute;lido!', 'beneficiaria/index/editar-responsavel/id/' . $idResponsavel, 'error');
+                parent::message('DDD inválido!', 'beneficiaria/index/editar-responsavel/id/' . $idResponsavel, 'error');
             }
         }
 

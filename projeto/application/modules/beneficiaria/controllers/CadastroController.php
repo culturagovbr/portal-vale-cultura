@@ -122,7 +122,7 @@ class Beneficiaria_CadastroController extends GenericController
 
                 $verificaDDD = $modelDDD->select(array('CD_DDD = ?' => $CDDDD));
                 if (count($verificaDDD) == 0) {
-                    $ERROR['DDD'] = 'DDD inv&aacute;lido!';
+                    $ERROR['DDD'] = 'DDD inválido!';
                 }
             }
 
