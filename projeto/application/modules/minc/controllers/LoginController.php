@@ -65,7 +65,7 @@ class Minc_LoginController extends GenericController {
                 }
                 
             } else {
-                parent::message('Login Inv&aacute;lido', '/', 'error');
+                parent::message('Login Inválido', '/', 'error');
             }
 
             // Adicionar o Usuario na sessao

@@ -30,7 +30,7 @@
             
             <?php //if ($this->ambiente == "development") : ?>
             <div class="msg error">
-                    <h1>EXCE&Ccedil;&Atilde;O:</h1>
+                    <h1>EXCEÁ„O:</h1>
                     <pre><?php echo $this->exception->getMessage();?></pre>
                     <br />
 
@@ -38,7 +38,7 @@
                     <pre><?php echo $this->exception->getTraceAsString();?></pre>
                     <br />
 
-                    <h1>PAR&Acirc;METROS DA REQUISI&Ccedil;&Atilde;O:</h1>
+                    <h1>PAR&Acirc;METROS DA REQUISIÁ„O:</h1>
                     <pre><?php echo var_dump($this->request->getParams());?></pre>
             </div>
             <?php //endif; ?>
