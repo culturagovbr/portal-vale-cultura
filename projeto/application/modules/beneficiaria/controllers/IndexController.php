@@ -1263,8 +1263,32 @@ class Beneficiaria_IndexController extends GenericController
         } catch (Exception $ex) {
             parent::message('Ops, desculpe mas houve um erro na aplicação.', '/beneficiaria/index/responsavel/', 'error');
         }
+    }
 
+    // ativação dos responsáveis das Beneficiárias
+    public function ativacaoNaoResponsavelAction()
+    {
+        $idBeneficiaria = $this->_sessao['beneficiaria'];
+        $idResponsavel = $this->getRequest()->getParam('id');
+        $ativacao = $this->getRequest()->getParam('ativar');
+        $tipoVinculo = 'A';
+        $msg = 'Ativado com sucesso!';
 
+        if ($ativacao == 'N') {
+            $tipoVinculo = 'I';
+            $msg = 'Desativado com sucesso!';
+        }
+
+        $modelPessoaVinculada = new Application_Model_PessoaVinculada();
+
+        try {
+
+            $modelPessoaVinculada->update(array('ST_PESSOA_VINCULADA' => $tipoVinculo), $idBeneficiaria, $idResponsavel);
+            parent::message($msg, '/beneficiaria/index/nao-responsavel/', 'confirm');
+
+        } catch (Exception $ex) {
+            parent::message('Ops, desculpe mas houve um erro na aplicação.', '/beneficiaria/index/nao-responsavel/', 'error');
+        }
     }
 
     public function autorizarDivulgacaoMincAction()
@@ -1298,8 +1322,377 @@ class Beneficiaria_IndexController extends GenericController
         } else {
             parent::message('Beneficiária não foi localizada!', '/minc/admin', 'error');
         }
-
     }
 
-}
+    public function salvarNaoResponsavelAction()
+    {
+        $idBeneficiaria = $this->_sessao['beneficiaria'];
 
+        set_time_limit('120');
+
+        $modelPessoaVinculada = new Application_Model_PessoaVinculada();
+        $modelTelefone = new Application_Model_Telefone();
+        $modelEmail = new Application_Model_Email();
+        $modelUsuario = new Application_Model_Usuario();
+        $modelUsuarioPerfil = new Application_Model_UsuarioPerfil();
+        $modelSituacao = new Application_Model_Situacao();
+        $modelCBOPessoaFisica = new Application_Model_CBOPessoaFisica();
+        $modelDDD = new Application_Model_DDD();
+
+        //Recuperando form
+        $IDPF = $this->getRequest()->getParam('IDPF');
+        $NRCPF = str_replace('.', '', str_replace('-', '', $this->getRequest()->getParam('RESPONSAVEL_CPF')));
+        $CDDDDFAX = (int)substr(str_replace('-', '', (str_replace(' ', '', str_replace('(', '', str_replace(')', '', $this->getRequest()->getParam('FaxResponsavel')))))), 0, 2);
+        $NRFAX = (int)substr(str_replace('-', '', (str_replace(' ', '', str_replace('(', '', str_replace(')', '', $this->getRequest()->getParam('FaxResponsavel')))))), 2);
+        $CDDDD = (int)substr(str_replace('-', '', (str_replace(' ', '', str_replace('(', '', str_replace(')', '', $this->getRequest()->getParam('TelResponsavel')))))), 0, 2);
+        $NRTELEFONE = (int)substr(str_replace('-', '', (str_replace(' ', '', str_replace('(', '', str_replace(')', '', $this->getRequest()->getParam('TelResponsavel')))))), 2);
+        $DSEMAIL = $this->getRequest()->getParam('emailResponsavel');
+        $CDCBO = $this->getRequest()->getParam('CDCBO');
+
+
+        $db = Zend_Db_Table::getDefaultAdapter();
+        $db->beginTransaction();
+
+        try {
+            // Validando Form
+            if ($IDPF == '0') {
+                throw new Exception('CPF não encontrado!', 500);
+            }
+
+            if (strlen($NRTELEFONE) < 8) {
+                throw new Exception('Informe o telefone!', 500);
+            }
+
+            if ($CDDDD) {
+                $verificaDDD = $modelDDD->select(array('CD_DDD = ?' => $CDDDD));
+                if (count($verificaDDD) == 0) {
+                    throw new Exception('DDD inválido!', 500);
+                }
+            }
+
+            if (!$DSEMAIL) {
+                throw new Exception('Informe o e-mail!', 500);
+            }
+
+            if (!validaEmail($DSEMAIL)) {
+                throw new Exception('Email inválido!', 500);
+            }
+
+            // Vincular o responsável
+            $idPessoaFisica = $IDPF;
+            $idPessoaJuridica = $idBeneficiaria;
+
+            //Verifica se já existe esse número cadastrado
+            $where = array(
+                'ID_PESSOA = ?' => $idPessoaFisica,
+                'SG_PAIS = ?' => 'BRA',
+                'NR_TELEFONE = ?' => $NRTELEFONE,
+                'ID_TIPO_TELEFONE = ?' => 2,
+                'CD_DDD = ?' => $CDDDD
+            );
+
+            $existeTelefone = $modelTelefone->select($where);
+
+            if (count($existeTelefone) == 0) {
+                //Inserindo na model Telefone
+                $Cols = array(
+                    'ID_PESSOA' => $idPessoaFisica,
+                    'SG_PAIS' => 'BRA',
+                    'NR_TELEFONE' => $NRTELEFONE,
+                    'ID_TIPO_TELEFONE' => 2,
+                    'CD_DDD' => $CDDDD
+                );
+
+                $modelTelefone->insert($Cols);
+            }
+
+            if (strlen($NRFAX) > 7) {
+                //Verifica se já existe esse número cadastrado
+                $where = array(
+                    'ID_PESSOA = ?' => $idPessoaFisica,
+                    'SG_PAIS = ?' => 'BRA',
+                    'NR_TELEFONE = ?' => $NRFAX,
+                    'ID_TIPO_TELEFONE = ?' => 4,
+                    'CD_DDD = ?' => $CDDDDFAX
+                );
+
+                $existeFax = $modelTelefone->select($where);
+                if (count($existeFax) == 0) {
+                    //Inserindo na model Telefone
+                    $Cols = array(
+                        'ID_PESSOA' => $idPessoaFisica,
+                        'SG_PAIS' => 'BRA',
+                        'NR_TELEFONE' => $NRFAX,
+                        'ID_TIPO_TELEFONE' => 4,
+                        'CD_DDD' => $CDDDDFAX
+                    );
+
+                    $modelTelefone->insert($Cols);
+                }
+            }
+
+            // Verificar se já existe o email
+            $where = array(
+                'ID_PESSOA = ?' => $idPessoaFisica,
+                'DS_EMAIL = ?' => $DSEMAIL,
+                'ID_TIPO_EMAIL = ?' => 2,
+                'ST_EMAIL_PRINCIPAL = ?' => 'S'
+            );
+
+            $existeEmail = $modelEmail->select($where);
+
+            if (count($existeEmail) == 0) {
+
+                //Inserindo Email do responsavel
+                $Cols = array(
+                    'ID_PESSOA' => $idPessoaFisica,
+                    'DS_EMAIL' => $DSEMAIL,
+                    'ID_TIPO_EMAIL' => 2,
+                    'ST_EMAIL_PRINCIPAL' => 'S'
+                );
+
+                $modelEmail->insert($Cols);
+
+            }
+
+            //Inserindo CBO do responsavel
+            if ($CDCBO) {
+
+                // Verifica se já existe esse registro para não duplicar
+                $whereCDCBO = array(
+                    'ID_PESSOA_FISICA = ?' => $idPessoaFisica,
+                    'ID_PESSOA_JURIDICA = ?' => $idPessoaJuridica,
+                );
+
+                $existeCDCBO = $modelCBOPessoaFisica->select($whereCDCBO);
+
+                $Cols = array(
+                    'ID_PESSOA_FISICA' => $idPessoaFisica,
+                    'ID_PESSOA_JURIDICA' => $idPessoaJuridica,
+                    'CD_CBO' => $CDCBO
+                );
+
+                if (count($existeCDCBO) == 0) {
+                    $modelCBOPessoaFisica->insert($Cols);
+                } else {
+                    $modelCBOPessoaFisica->update($Cols, $existeCDCBO[0]['ID_PESSOA_FISICA_CBO']);
+                }
+            }
+
+            //============== VINCULANDO EMPRESA E RESPONSAVEL ==================
+            // Verifica se ja existe vinculo
+            $where = array(
+                'ID_PESSOA = ?' => $idPessoaJuridica,
+                'ID_PESSOA_VINCULADA = ?' => $idPessoaFisica,
+                'ID_TIPO_VINCULO_PESSOA = ?' => 13
+            );
+
+            $vinculo = $modelPessoaVinculada->select($where);
+
+            if (count($vinculo) == 0) {
+                $Cols = array(
+                    'ID_PESSOA' => $idPessoaJuridica,
+                    'ID_PESSOA_VINCULADA' => $idPessoaFisica,
+                    'ID_TIPO_VINCULO_PESSOA' => 13
+                );
+
+                $modelPessoaVinculada->insert($Cols);
+            }
+
+            //==================== CRIANDO USUARIO =============================
+            $where = array(
+                'ID_PESSOA_FISICA = ?' => $idPessoaFisica
+            );
+
+            $usuario = $modelUsuario->select($where);
+
+            if (count($usuario) > 0) {
+                $idUsuario = $usuario[0]['ID_USUARIO'];
+                $enviaEmail = false;
+            } else {
+                $geraID = $modelUsuario->criaId();
+                $idUsuario = $geraID['idUsuario'];
+                $senha = gerarSenha();
+
+                $Cols = array(
+                    'ID_USUARIO' => $idUsuario,
+                    'DS_LOGIN' => $NRCPF,
+                    'DS_SENHA' => md5($senha),
+                    'ID_PESSOA_FISICA' => $idPessoaFisica
+                );
+
+                $modelUsuario->insert($Cols);
+                $enviaEmail = true;
+            }
+
+            //Verifica se usuario já tem o perfil
+            $where = array(
+                'ID_USUARIO = ?' => $idUsuario,
+                'ID_PERFIL   = ?' => 2
+            );
+
+            $usuarioPerfil = $modelUsuarioPerfil->select($where);
+            if (count($usuarioPerfil) < 1) {
+                $Cols = array(
+                    'ID_USUARIO' => $idUsuario,
+                    'ID_PERFIL' => 2
+                );
+
+                $modelUsuarioPerfil->insert($Cols);
+            }
+
+            if ($this->_sessao["PerfilGeral"] != 'A') {
+
+                //Cria Situação para a Operadora
+                $Cols = array(
+                    'ID_PESSOA' => $idPessoaJuridica,
+                    'ID_USUARIO' => $idUsuario,
+                    'ID_TIPO_SITUACAO' => 1,
+                    'TP_ENTIDADE_VALE_CULTURA' => 'B',
+                    'DS_JUSTIFICATIVA' => 'Cadastro realizado'
+                );
+
+                $modelSituacao->insert($Cols);
+            }
+
+            if ($enviaEmail) {
+                $links = Zend_Controller_Front::getInstance()->getParam('bootstrap')->getOption('link');
+
+                $htmlEmail = emailSenhaHTML();
+                $htmlEmail = str_replace('#PERFIL#', 'Operadora', $htmlEmail);
+                $htmlEmail = str_replace('#URL#', $links['vale-cultura'], $htmlEmail);
+                $htmlEmail = str_replace('#EMAIL#', $links['email-vale-cultura'], $htmlEmail);
+                $htmlEmail = str_replace('#Senha#', $senha, $htmlEmail);
+//                $enviarEmail = $modelEmail->enviarEmail($DSEMAIL, 'Acesso ao sistema Vale Cultura', $htmlEmail);
+            }
+
+            $db->commit();
+            parent::message('Não Responsável cadastrado com sucesso!', '/beneficiaria/index/nao-responsavel', 'confirm');
+
+        } catch (Exception $exc) {
+            $mgs = $exc->getCode() == 500 ? $exc->getMessage() : 'Erro ao cadastrar o não responsável.';
+            $db->rollBack();
+            parent::message($mgs, '/beneficiaria/index/novo-nao-responsavel', 'error');
+        }
+    }
+
+    public function editarNaoResponsavelAction()
+    {
+        $idResponsavel = $this->getRequest()->getParam('id');
+        $dadosResponsavel = array();
+        $idBeneficiaria = $this->_sessao['beneficiaria'];
+        $urlArquivo = null;
+
+        $modelPessoaVinculada = new Application_Model_PessoaVinculada();
+        $modelEmail = new Application_Model_Email();
+        $modelTelefone = new Application_Model_Telefone();
+
+        $where = array(
+            'pv.ID_PESSOA = ?' => $idBeneficiaria,
+            'pv.ID_PESSOA_VINCULADA = ?' => $idResponsavel,
+        );
+
+        // Dados do responsável
+        $responsavel = $modelPessoaVinculada->buscarDadosResponsavel($where);
+
+        if (count($responsavel) > 0) {
+
+            $dadosResponsavel['idResponsavel'] = $responsavel[0]->idPessoaVinculada;
+            $dadosResponsavel['nmResponsavel'] = $responsavel[0]->nmPessoaFisica;
+            $dadosResponsavel['nrCpfResponsavel'] = addMascara($responsavel[0]->nrCpf, 'cpf');
+            $dadosResponsavel['cargoResponsavel'] = $responsavel[0]->nmCbo;
+            $dadosResponsavel['cdCbo'] = $responsavel[0]->cdCbo;
+            $dadosResponsavel['stAtivo'] = $responsavel[0]->ST_PESSOA_VINCULADA;
+
+            // Email do responsável da operadora
+            $emails = $modelEmail->buscarEmails(array('ID_PESSOA = ?' => $responsavel[0]->idPessoaVinculada));
+
+            $listaEmails = array();
+            if (count($emails) > 0) {
+                $e = 0;
+                foreach ($emails as $em) {
+                    $listaEmails[$e]['idEmail'] = $em->ID_EMAIL;
+                    $listaEmails[$e]['dsEmail'] = $em->dsEmail;
+                    $e++;
+                }
+            }
+
+            $dadosResponsavel['emailsResponsavel'] = $listaEmails;
+
+            // Telefones do responsável da operadora
+            $telefones = $modelTelefone->buscarTelefones(array('ID_PESSOA = ?' => $responsavel[0]->idPessoaVinculada));
+            $listaTelefones = array();
+
+            if (count($telefones) > 0) {
+                $t = 0;
+                foreach ($telefones as $tel) {
+                    if ($tel->idTipoTelefone == 2) {
+                        $listaTelefones[$t]['idTelefone'] = $tel->idTelefone;
+                        $listaTelefones[$t]['idTipoTelefone'] = 2;
+                        $listaTelefones[$t]['TelResponsavel'] = 'Tel: (' . $tel->cdDDD . ') ' . $tel->nrTelefone;
+                    }
+                    if ($tel->idTipoTelefone == 4) {
+                        $listaTelefones[$t]['idTelefone'] = $tel->idTelefone;
+                        $listaTelefones[$t]['idTipoTelefone'] = 4;
+                        $listaTelefones[$t]['FaxResponsavel'] = 'Fax: (' . $tel->cdDDD . ') ' . $tel->nrTelefone;
+                    }
+                    $t++;
+                }
+            }
+
+            $dadosResponsavel['telefonesResponsavel'] = $listaTelefones;
+
+            $where = array();
+            $where['ID_BENEFICIARIA = ?'] = $idBeneficiaria;
+            $where['ID_RESPONSAVEL = ?'] = $idResponsavel;
+        } else {
+            parent::message('Erro ao localizar o responsável.', '/beneficiaria/index/responsavel', 'error');
+        }
+
+        $modelCBO = new Application_Model_CBO();
+        $CBOs = $modelCBO->select(array(), 'NM_CBO', null);
+
+        $this->view->assign('CBOs', $CBOs);
+        $this->view->assign('responsavel', $dadosResponsavel);
+        $this->view->assign('idBeneficiaria', $idBeneficiaria);
+    }
+
+    public function atualizarDadosNaoResponsavelAction()
+    {
+        $idResponsavel = $this->_request->getParam('idResponsavel');
+        $idBeneficiaria = $this->_request->getParam('idBeneficiaria');
+        $CDCBO = $this->_request->getParam('CDCBO');
+
+        $modelCBOPessoaFisica = new Application_Model_CBOPessoaFisica();
+
+        try {
+            $where = array();
+            $where['ID_BENEFICIARIA = ?'] = $idBeneficiaria;
+            $where['ID_RESPONSAVEL = ?'] = $idResponsavel;
+
+            if ($CDCBO) {
+                // apaga o que for dessa empresa e responsável
+                $where = array(
+                    'ID_PESSOA_FISICA = ?' => $idResponsavel,
+                    'ID_PESSOA_JURIDICA = ?' => $idBeneficiaria
+                );
+
+                $modelCBOPessoaFisica->apagar($where);
+
+                $Cols = array(
+                    'CD_CBO' => $CDCBO,
+                    'ID_PESSOA_FISICA' => $idResponsavel,
+                    'ID_PESSOA_JURIDICA' => $idBeneficiaria
+                );
+
+                $modelCBOPessoaFisica->insert($Cols);
+            }
+
+            parent::message('Cargo atualizado com sucesso!', 'beneficiaria/index/editar-nao-responsavel/id/' . $idResponsavel, 'confirm');
+
+        } catch (Exception $exc) {
+            $msg = $exc->getCode() == 500 ? $exc->getMessage() : 'Erro ao atualizar o cargo!';
+            parent::message($msg, 'beneficiaria/index/editar-nao-responsavel/id/' . $idResponsavel, 'error');
+        }
+    }
+}

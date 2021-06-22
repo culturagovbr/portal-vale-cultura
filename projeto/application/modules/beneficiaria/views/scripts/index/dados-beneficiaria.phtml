@@ -5,7 +5,7 @@
         <div id="sidebar-left" class="span2">
             <div class="row-fluid actions">
                 <input type="text" class="search span12" placeholder="O que deseja buscar?" />
-            </div>	
+            </div>
             <?php include_once 'menu.phtml'; ?>
         </div>
         <!-- end: Main Menu -->
@@ -89,7 +89,7 @@
                                             <td>
                                                 <select class="input_simples w150" name="Estado" id="Estado">
                                                     <option value="<?php echo $this->beneficiaria['sgUF']; ?>"> <?php echo $this->beneficiaria['nmUf']; ?> </option>
-                                                </select> 
+                                                </select>
                                             </td>
                                             <td>
                                                 <select class="input_simples w150" name="Municipio" id="Municipio">
@@ -111,16 +111,16 @@
                                         <tr>
                                             <td>
                                                 <select name="EMPRESA_TIPO_LUCRO" id="EMPRESA_TIPO_LUCRO" class="select_simples w200">
-                                                    <option value=""> - Selecione - </option>     
+                                                    <option value=""> - Selecione - </option>
                                                     <?php foreach ($this->tipoLucro as $lucro) { ?>
-                                                        <option value="<?php echo $lucro['ID_TIPO_LUCRO'] ?>"  <?php echo $lucro['ID_TIPO_LUCRO'] == $this->beneficiaria['idTipoLucro'] ? 'selected="selected"' : ''; ?>> <?php echo $lucro['DS_TIPO_LUCRO'] ?> </option>     
+                                                        <option value="<?php echo $lucro['ID_TIPO_LUCRO'] ?>"  <?php echo $lucro['ID_TIPO_LUCRO'] == $this->beneficiaria['idTipoLucro'] ? 'selected="selected"' : ''; ?>> <?php echo $lucro['DS_TIPO_LUCRO'] ?> </option>
                                                     <?php } ?>
                                                 </select>
                                             </td>
                                             <td><?php echo $this->beneficiaria['dsNaturezaJuridica']; ?></td>
                                             <td>
                                                 <select name="EMPRESA_OPERADORA" id="EMPRESA_OPERADORA" class="select_simples">
-                                                    <option value=""> - Selecione - </option>     
+                                                    <option value=""> - Selecione - </option>
                                                     <?php foreach ($this->operadoras as $operadora) { ?>
                                                     <option value="<?php echo $operadora['idOperadora'] ?>" <?php echo $operadora['idOperadora'] == $this->beneficiaria['idOperadora'] ? 'selected="selected"' : '' ?>> <?php
                                                     if (ctype_space($operadora['nmFantasia']) || $operadora['nmFantasia'] == '' || $operadora['nmFantasia'] === NULL || empty($operadora['nmFantasia']) ) {
@@ -129,7 +129,7 @@
                                                         $nomeOperadora = $operadora['nmFantasia'];
                                                     }
                                                     echo $nomeOperadora;
-                                                    echo $operadora['idSituacaoXX'] != 2 ? ' (Inativa)' : '';                                                                                                                         ?> </option>     
+                                                    echo $operadora['idSituacaoXX'] != 2 ? ' (Inativa)' : '';                                                                                                                         ?> </option>
                                                     <?php } ?>
                                                 </select>
                                             </td>
@@ -145,12 +145,12 @@
                                         <tr>
                                             <td>
                                                 <?php foreach ($this->CNAEPrincipal as $CNAE): ?>
-                                                <?php echo $CNAE['ID_CNAE'] ?> - <?php echo $CNAE['dsCNAE'] ?><br />     
+                                                <?php echo $CNAE['ID_CNAE'] ?> - <?php echo $CNAE['dsCNAE'] ?><br />
                                                 <?php endforeach; ?>
                                             </td>
                                             <td class="destacar bold" colspan="2">
                                                 <?php foreach ($this->CNAESecundarios as $CNAE): ?>
-                                                <?php echo $CNAE['ID_CNAE'] ?> - <?php echo $CNAE['dsCNAE'] ?><br />     
+                                                <?php echo $CNAE['ID_CNAE'] ?> - <?php echo $CNAE['dsCNAE'] ?><br />
                                                 <?php endforeach; ?>
                                             </td>
                                         </tr>
@@ -266,6 +266,9 @@
             }
         });
 
+        $('#btnVoltar').click(function () {
+            window.location.href = "/admin/lista-beneficiarios";
+        });
     });
 
     function buscaCep(obj) {
