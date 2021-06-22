@@ -423,7 +423,7 @@ class Beneficiaria_CadastroController extends GenericController
 
 
                     //============== VINCULANDO EMPRESA E RESPONSAVEL ==================
-                    //Verifica se ja existe vinculo
+                    //Verifica se já existe vinculo
 
                     $where = array(
                         'ID_PESSOA = ?' => $idPessoaJuridica,

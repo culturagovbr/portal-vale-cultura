@@ -308,13 +308,13 @@ function carregaHTMLCertificado()
             <tr>
                 <td align="center" colspan="3">
                     <img src="' . $img . '"><br><br>
-                    MINISTÈRIO DA CIDADANIA<br>
+                    MINIST…RIO DA CIDADANIA<br>
                     SECRETARIA DE FOMENTO E INCENTIVO ‡ CULTURA - SEFIC
                 </td>
             </tr>
             <tr>
                 <td align="center" colspan="3" style="padding: 10px;">
-                    CERTIFICADO DE INSCRIÁ„O NO PROGRAMA DE CULTURA DO TRABALHADOR
+                    CERTIFICADO DE INSCRI«√O NO PROGRAMA DE CULTURA DO TRABALHADOR
                 </td>
             </tr>
             <tr>
@@ -427,18 +427,18 @@ function carregaHTMLCertificadoBeneficiaria()
             <tr>
                 <td align="center" colspan="3">
                     <img src="' . $img . '"><br><br>
-                    MINISTÈRIO DA CIDADANIA<br>
+                    MINIST…RIO DA CIDADANIA<br>
                     SECRETARIA DE FOMENTO E INCENTIVO ‡ CULTURA - SEFIC
                 </td>
             </tr>
             <tr>
                 <td align="center" colspan="3" style="padding: 10px;">
-                    CERTIFICADO DE INSCRI«„O NO PROGRAMA DE CULTURA DO TRABALHADOR
+                    CERTIFICADO DE INSCRI«√O NO PROGRAMA DE CULTURA DO TRABALHADOR
                 </td>
             </tr>
             <tr>
                 <td align="center" colspan="3" style="padding: 10px 10px 20px 10px;">
-                    EMPRESA BENEFICI·RIA
+                    EMPRESA BENEFICI¡RIA
                 </td>
             </tr>
             <tr>
