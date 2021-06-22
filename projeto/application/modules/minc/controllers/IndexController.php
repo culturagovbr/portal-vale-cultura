@@ -7,9 +7,9 @@ class Minc_IndexController extends GenericController
 
     public function init()
     {
-        // Layout Padr�o
+        // Layout Padrão
         $this->view->layout()->setLayout('layout');
-        // T�tulo
+        // Título
         $this->view->assign('titulo', 'Minc');
 
         parent::init();
