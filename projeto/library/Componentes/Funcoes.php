@@ -309,7 +309,7 @@ function carregaHTMLCertificado()
                 <td align="center" colspan="3">
                     <img src="' . $img . '"><br><br>
                     MINIST…RIO DA CIDADANIA<br>
-                    SECRETARIA DE FOMENTO E INCENTIVO ¿ CULTURA - SEFIC
+                    SECRETARIA DE FOMENTO E INCENTIVO ‡ CULTURA - SEFIC
                 </td>
             </tr>
             <tr>
@@ -433,7 +433,7 @@ function carregaHTMLCertificadoBeneficiaria()
             </tr>
             <tr>
                 <td align="center" colspan="3" style="padding: 10px;">
-                    CERTIFICADO DE INSCRI«„O NO PROGRAMA DE CULTURA DO TRABALHADOR
+                    CERTIFICADO DE INSCRI«√O NO PROGRAMA DE CULTURA DO TRABALHADOR
                 </td>
             </tr>
             <tr>

@@ -652,7 +652,7 @@ class Beneficiaria_IndexController extends GenericController
             }
 
             //============== VINCULANDO EMPRESA E RESPONSAVEL ==================
-            // Verifica se já existe vinculo
+            // Verifica se ja existe vinculo
             $where = array(
                 'ID_PESSOA = ?' => $idPessoaJuridica,
                 'ID_PESSOA_VINCULADA = ?' => $idPessoaFisica,
@@ -1023,7 +1023,7 @@ class Beneficiaria_IndexController extends GenericController
         $idResponsavel = $this->_request->getParam('idResponsavel');
         $email = trim($this->getRequest()->getParam('emailResponsavel'));
 
-        // Faz a verificação usando a funcionário
+        // Faz a verificação usando a função
         if (!validaEmail($email)) {
             parent::message('E-mail inválido!', 'beneficiaria/index/editar-responsavel/id/' . $idResponsavel, 'error');
         }
@@ -1311,7 +1311,7 @@ class Beneficiaria_IndexController extends GenericController
 
                 $modelBeneficiaria->update($Cols, $idBeneficiaria);
                 parent::message('Atualização realizada com sucesso!', '/minc/admin', 'confirm');
-            } else if ($autorizacao === "Não AUTORIZO") {
+            } else if ($autorizacao === "NÃO AUTORIZO") {
                 $Cols = array(
                     'ST_AUTORIZA_MINC' => 2
                 );
@@ -1480,7 +1480,7 @@ class Beneficiaria_IndexController extends GenericController
             }
 
             //============== VINCULANDO EMPRESA E RESPONSAVEL ==================
-            // Verifica se já existe vinculo
+            // Verifica se ja existe vinculo
             $where = array(
                 'ID_PESSOA = ?' => $idPessoaJuridica,
                 'ID_PESSOA_VINCULADA = ?' => $idPessoaFisica,
