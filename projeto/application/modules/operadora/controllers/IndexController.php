@@ -828,12 +828,12 @@ class Operadora_IndexController extends GenericController {
             }
 
             $db->commit();
-            parent::message('Responsï¿½vel cadastrado com sucesso!', '/operadora/index/responsavel', 'confirm');
+            parent::message('Responsável cadastrado com sucesso!', '/operadora/index/responsavel', 'confirm');
 
         } catch (Exception $exc) {
             $db->rollBack();
             xd($exc->getMessage());
-            parent::message('Erro ao cadastrar o responsï¿½vel.', '/operadora/index/novo-responsavel', 'error');
+            parent::message('Erro ao cadastrar o responsável.', '/operadora/index/novo-responsavel', 'error');
         }
 
     }
@@ -843,7 +843,7 @@ class Operadora_IndexController extends GenericController {
         $dadosResponsavel = array();
         $idOperadora = $this->_sessao['operadora'];
 
-        // Dados do responsï¿½vel da operadora
+        // Dados do responsável da operadora
         $modelPessoaVinculada   = new Application_Model_PessoaVinculada();
         $modelEmail             = new Application_Model_Email();
         $modelTelefone          = new Application_Model_Telefone();
@@ -870,7 +870,7 @@ class Operadora_IndexController extends GenericController {
             $dadosResponsavel[$i]['cdCbo']              = $re->cdCbo;
             $dadosResponsavel[$i]['stAtivo']            = $re->ST_PESSOA_VINCULADA;
 
-            // Email do responsï¿½vel da operadora
+            // Email do responsável da operadora
             $emails = $modelEmail->buscarEmails(array('ID_PESSOA = ?' => $re->idPessoaVinculada));
 
             $listaEmails = array();
@@ -884,7 +884,7 @@ class Operadora_IndexController extends GenericController {
             }
             $dadosResponsavel[$i]['emailsResponsavel'] = $listaEmails;
 
-            // Telefones do responsï¿½vel da operadora
+            // Telefones do responsável da operadora
             $telefones = $modelTelefone->buscarTelefones(array('ID_PESSOA = ?' => $re->idPessoaVinculada));
             $listaTelefones = array();
 
@@ -935,7 +935,7 @@ class Operadora_IndexController extends GenericController {
             'pv.ID_PESSOA_VINCULADA = ?'    => $idResponsavel,
         );
 
-        // Dados do responsï¿½vel
+        // Dados do responsável
         $responsavel = $modelPessoaVinculada->buscarDadosResponsavel($where);
 
         if(count($responsavel) > 0){
@@ -947,7 +947,7 @@ class Operadora_IndexController extends GenericController {
             $dadosResponsavel['cdCbo']              = $responsavel[0]->cdCbo;
             $dadosResponsavel['stAtivo']            = $responsavel[0]->ST_PESSOA_VINCULADA;
 
-            // Email do responsï¿½vel da operadora
+            // Email do responsável da operadora
             $emails = $modelEmail->buscarEmails(array('ID_PESSOA = ?' => $responsavel[0]->idPessoaVinculada));
 
             $listaEmails = array();
@@ -962,7 +962,7 @@ class Operadora_IndexController extends GenericController {
 
             $dadosResponsavel['emailsResponsavel'] = $listaEmails;
 
-            // Telefones do responsï¿½vel da operadora
+            // Telefones do responsável da operadora
             $telefones = $modelTelefone->buscarTelefones(array('ID_PESSOA = ?' => $responsavel[0]->idPessoaVinculada));
             $listaTelefones = array();
 
@@ -986,7 +986,7 @@ class Operadora_IndexController extends GenericController {
             $dadosResponsavel['telefonesResponsavel'] = $listaTelefones;
 
         } else {
-            parent::message('Erro ao localizar o responsï¿½vel.', '/operadora/index/responsavel', 'error');
+            parent::message('Erro ao localizar o responsável.', '/operadora/index/responsavel', 'error');
         }
 
         $modelCBO = new Application_Model_CBO();
@@ -1009,7 +1009,7 @@ class Operadora_IndexController extends GenericController {
         try {
 
             if ($CDCBO) {
-                // apaga o que for dessa empresa e responsï¿½vel
+                // apaga o que for dessa empresa e responsável
                 $where = array(
                     'ID_PESSOA_FISICA = ?'   => $idResponsavel,
                     'ID_PESSOA_JURIDICA = ?' => $idOperadora
@@ -1031,7 +1031,7 @@ class Operadora_IndexController extends GenericController {
                     $modelSituacao                  = new Application_Model_Situacao();
                     $dadosSituacao = array(
                             'ID_PESSOA'                     => $idOperadora,
-                            'DS_JUSTIFICATIVA'              => 'Mudanï¿½a em responsï¿½veis da operadora.',
+                            'DS_JUSTIFICATIVA'              => 'Mudança em responsáveis da operadora.',
                             'ID_USUARIO'                    => $this->_sessao['idUsuario'],
                             'TP_ENTIDADE_VALE_CULTURA'      => 'O',
                             'ID_TIPO_SITUACAO'              => 1
@@ -1089,7 +1089,7 @@ class Operadora_IndexController extends GenericController {
                     $modelTelefone->insert($Cols);
 
                 }else{
-                    parent::message($this->getRequest()->getParam('TelResponsavel').'  jï¿½ estï¿½ cadastrado!', 'operadora/index/editar-responsavel/id/'.$idResponsavel, 'error');
+                    parent::message($this->getRequest()->getParam('TelResponsavel').'  já está cadastrado!', 'operadora/index/editar-responsavel/id/'.$idResponsavel, 'error');
                 }
             }
 
@@ -1113,7 +1113,7 @@ class Operadora_IndexController extends GenericController {
                 $modelTelefone->delete($idTelefone);
             }
 
-            parent::message('Telefone excluï¿½do com sucesso!', 'operadora/index/editar-responsavel/id/'.$idResponsavel, 'confirm');
+            parent::message('Telefone excluído com sucesso!', 'operadora/index/editar-responsavel/id/'.$idResponsavel, 'confirm');
 
         } catch (Exception $exc) {
             parent::message('Erro ao excluir o telefone!', 'operadora/index/editar-responsavel/id/'.$idResponsavel, 'error');
@@ -1126,9 +1126,9 @@ class Operadora_IndexController extends GenericController {
         $idResponsavel  = $this->_request->getParam('idResponsavel');
         $email          = trim($this->getRequest()->getParam('emailResponsavel'));
 
-        // Faz a verificaï¿½ï¿½o usando a funï¿½ï¿½o
+        // Faz a verificação usando a função
         if (!validaEmail($email)) {
-            parent::message('E-mail invï¿½lido!', 'operadora/index/editar-responsavel/id/'.$idResponsavel, 'error');
+            parent::message('E-mail inválido!', 'operadora/index/editar-responsavel/id/'.$idResponsavel, 'error');
         }
 
         try {
@@ -1152,7 +1152,7 @@ class Operadora_IndexController extends GenericController {
                     );
                     $modelEmail->insert($Cols);
                 }else{
-                    parent::message($email.'  jï¿½ estï¿½ cadastrado!', 'operadora/index/editar-responsavel/id/'.$idResponsavel, 'error');
+                    parent::message($email.'  já está cadastrado!', 'operadora/index/editar-responsavel/id/'.$idResponsavel, 'error');
                 }
             }
 
@@ -1175,7 +1175,7 @@ class Operadora_IndexController extends GenericController {
                 $modelEmail->delete($idEmail);
             }
 
-            parent::message('Email excluï¿½do com sucesso!', 'operadora/index/editar-responsavel/id/'.$idResponsavel, 'confirm');
+            parent::message('Email excluído com sucesso!', 'operadora/index/editar-responsavel/id/'.$idResponsavel, 'confirm');
 
         } catch (Exception $exc) {
             parent::message('Erro ao excluir o email!', 'operadora/index/editar-responsavel/id/'.$idResponsavel, 'error');
@@ -1206,7 +1206,7 @@ class Operadora_IndexController extends GenericController {
                 parent::message('Informe a nova senha', '/operadora/index/alterarsenha/', 'error');
             }
             if ($NOVA_SENHA != $NOVA_SENHA_CONFIRMA) {
-                parent::message('Senha de confirmaï¿½ï¿½o incorreta', '/operadora/index/alterarsenha/', 'error');
+                parent::message('Senha de confirmação incorreta', '/operadora/index/alterarsenha/', 'error');
             }
 
             //VALIDA SENHA ATUAL
@@ -1341,7 +1341,7 @@ class Operadora_IndexController extends GenericController {
 
             $responsaveis = array();
 
-            // Buscar os responsï¿½veis da Beneficiï¿½ria
+            // Buscar os responsáveis da Beneficiária
             $where = array(
                 'pv.ID_TIPO_VINCULO_PESSOA = ?' => 16,
                 'pv.id_Pessoa = ?'              => $b['idBeneficiaria'],
@@ -1361,7 +1361,7 @@ class Operadora_IndexController extends GenericController {
                 $responsaveis[$r]['cdCbo']          = $lr['cdCbo'];
                 $responsaveis[$r]['nmCbo']          = $lr['nmCbo'];
 
-                // Email do responsï¿½vel da operadora
+                // Email do responsável da operadora
 
                 $emails = array();
                 $listarEmails = $modelEmail->buscarEmails(array('id_Pessoa = ?' => $lr['idPessoaVinculada']));
@@ -1373,7 +1373,7 @@ class Operadora_IndexController extends GenericController {
 
                 $responsaveis[$r]['emailsResponsavel'] = $emails;
 
-                // Telefones do responsï¿½vel da operadora
+                // Telefones do responsável da operadora
                 $telefones = array();
                 $listaTelefones = $modelTelefone->buscarTelefones(array('id_Pessoa = ?' => $lr['idPessoaVinculada']));
                 $t = 0;
@@ -1404,11 +1404,11 @@ class Operadora_IndexController extends GenericController {
 
         $pagina = intval($this->_getParam('pagina', 1));
         $paginator = Zend_Paginator::factory($dadosBeneficiarias);
-        // Seta a quantidade de registros por pï¿½gina
+        // Seta a quantidade de registros por página
         $paginator->setItemCountPerPage(20);
-        // numero de paginas que serï¿½o exibidas
+        // numero de paginas que serão exibidas
         $paginator->setPageRange(7);
-        // Seta a pï¿½gina atual
+        // Seta a página atual
         $paginator->setCurrentPageNumber($pagina);
         // Passa o paginator para a view
         $this->view->beneficiarias = $paginator;
@@ -1431,7 +1431,7 @@ class Operadora_IndexController extends GenericController {
     }
 
 
-    // ativaï¿½ï¿½o dos responsï¿½veis das Beneficiï¿½rias
+    // ativação dos responsáveis das Beneficiárias
     public function ativacaoResponsavelAction(){
 
         $idOperadora    = $this->_sessao['operadora'];
@@ -1458,7 +1458,7 @@ class Operadora_IndexController extends GenericController {
             $eResponsavelOperadora    = $modelPessoaVinculada->buscarDadosResponsavel($where);
 
             if ((count($eResponsavelOperadora) > 0) && ($ativacao == 'S')) {
-                parent::message('O responsï¿½vel jï¿½ estï¿½ ativo em outra operadora!', '/operadora/index/responsavel/', 'error');
+                parent::message('O responsável já está ativo em outra operadora!', '/operadora/index/responsavel/', 'error');
             }
 
             $modelPessoaVinculada->update(array('ST_PESSOA_VINCULADA' => $tipoVinculo), $idOperadora, $idResponsavel);
@@ -1469,7 +1469,7 @@ class Operadora_IndexController extends GenericController {
                 $modelSituacao                  = new Application_Model_Situacao();
                 $dadosSituacao = array(
                         'ID_PESSOA'                     => $idOperadora,
-                        'DS_JUSTIFICATIVA'              => 'Mudanï¿½a em responsï¿½veis da operadora.',
+                        'DS_JUSTIFICATIVA'              => 'Mudança em responsáveis da operadora.',
                         'ID_USUARIO'                    => $this->_sessao['idUsuario'],
                         'TP_ENTIDADE_VALE_CULTURA'      => 'O',
                         'ID_TIPO_SITUACAO'              => 1
@@ -1482,7 +1482,7 @@ class Operadora_IndexController extends GenericController {
             parent::message($msg, '/operadora/index/responsavel/', 'confirm');
 
         } catch (Exception $ex) {
-            parent::message('Ops, desculpe mas houve um erro na aplicaï¿½ï¿½o.', '/operadora/index/responsavel/', 'error');
+            parent::message('Ops, desculpe mas houve um erro na aplicação.', '/operadora/index/responsavel/', 'error');
         }
 
 
@@ -1526,7 +1526,7 @@ class Operadora_IndexController extends GenericController {
                 $modelSituacao = new Application_Model_Situacao();
                 $dadosSituacao = array(
                     'ID_PESSOA' => $idOperadora,
-                    'DS_JUSTIFICATIVA' => 'Mudanï¿½a em responsï¿½veis da operadora.',
+                    'DS_JUSTIFICATIVA' => 'Mudança em responsáveis da operadora.',
                     'ID_USUARIO' => $this->_sessao['idUsuario'],
                     'TP_ENTIDADE_VALE_CULTURA' => 'O',
                     'ID_TIPO_SITUACAO' => 1
@@ -1539,7 +1539,7 @@ class Operadora_IndexController extends GenericController {
             parent::message($msg, '/operadora/index/nao-responsavel/', 'confirm');
 
         } catch (Exception $ex) {
-            parent::message('Ops, desculpe mas houve um erro na aplicaï¿½ï¿½o.', '/operadora/index/nao-responsavel/', 'error');
+            parent::message('Ops, desculpe mas houve um erro na aplicação.', '/operadora/index/nao-responsavel/', 'error');
         }
     }
 
@@ -1561,7 +1561,7 @@ class Operadora_IndexController extends GenericController {
         $dadosResponsavel = array();
         $idOperadora = $this->_sessao['operadora'];
 
-        // Dados do responsï¿½vel da operadora
+        // Dados do responsável da operadora
         $modelPessoaVinculada = new Application_Model_PessoaVinculada();
         $modelEmail = new Application_Model_Email();
         $modelTelefone = new Application_Model_Telefone();
@@ -1588,7 +1588,7 @@ class Operadora_IndexController extends GenericController {
             $dadosResponsavel[$i]['cdCbo'] = $re->cdCbo;
             $dadosResponsavel[$i]['stAtivo'] = $re->ST_PESSOA_VINCULADA;
 
-            // Email do responsï¿½vel da operadora
+            // Email do responsável da operadora
             $emails = $modelEmail->buscarEmails(array('ID_PESSOA = ?' => $re->idPessoaVinculada));
 
             $listaEmails = array();
@@ -1602,7 +1602,7 @@ class Operadora_IndexController extends GenericController {
             }
             $dadosResponsavel[$i]['emailsResponsavel'] = $listaEmails;
 
-            // Telefones do responsï¿½vel da operadora
+            // Telefones do responsável da operadora
             $telefones = $modelTelefone->buscarTelefones(array('ID_PESSOA = ?' => $re->idPessoaVinculada));
             $listaTelefones = array();
 
@@ -1689,7 +1689,7 @@ class Operadora_IndexController extends GenericController {
             if ($CDDDD) {
                 $verificaDDD = $modelDDD->select(array('CD_DDD = ?' => $CDDDD));
                 if (count($verificaDDD) == 0) {
-                    throw new Exception('DDD invï¿½lido!', 500);
+                    throw new Exception('DDD inválido!', 500);
                 }
             }
 
@@ -1698,14 +1698,14 @@ class Operadora_IndexController extends GenericController {
             }
 
             if (!validaEmail($DSEMAIL)) {
-                throw new Exception('Email invï¿½lido!', 500);
+                throw new Exception('Email inválido!', 500);
             }
 
-            // Vincular o responsï¿½vel
+            // Vincular o responsável
             $idPessoaFisica = $IDPF;
             $idPessoaJuridica = $idOperadora;
 
-            //Verifica se jï¿½ existe esse nï¿½mero cadastrado
+            //Verifica se já existe esse número cadastrado
             $where = array(
                 'ID_PESSOA = ?' => $idPessoaFisica,
                 'SG_PAIS = ?' => 'BRA',
@@ -1730,7 +1730,7 @@ class Operadora_IndexController extends GenericController {
             }
 
             if (strlen($NRFAX) > 7) {
-                //Verifica se jï¿½ existe esse nï¿½mero cadastrado
+                //Verifica se já existe esse número cadastrado
                 $where = array(
                     'ID_PESSOA = ?' => $idPessoaFisica,
                     'SG_PAIS = ?' => 'BRA',
@@ -1754,7 +1754,7 @@ class Operadora_IndexController extends GenericController {
                 }
             }
 
-            // Verificar se jï¿½ existe o email
+            // Verificar se já existe o email
             $where = array(
                 'ID_PESSOA = ?' => $idPessoaFisica,
                 'DS_EMAIL = ?' => $DSEMAIL,
@@ -1848,7 +1848,7 @@ class Operadora_IndexController extends GenericController {
                 $enviaEmail = true;
             }
 
-            //Verifica se usuario jï¿½ tem o perfil
+            //Verifica se usuario já tem o perfil
             $where = array(
                 'ID_USUARIO = ?' => $idUsuario,
                 'ID_PERFIL   = ?' => 3
@@ -1866,7 +1866,7 @@ class Operadora_IndexController extends GenericController {
 
             if ($this->_sessao["PerfilGeral"] != 'A') {
 
-                //Cria Situaï¿½ï¿½o para a Operadora
+                //Cria Situação para a Operadora
                 $Cols = array(
                     'ID_PESSOA' => $idPessoaJuridica,
                     'ID_USUARIO' => $idUsuario,
@@ -1917,7 +1917,7 @@ class Operadora_IndexController extends GenericController {
             'pv.ID_PESSOA_VINCULADA = ?' => $idResponsavel,
         );
 
-        // Dados do responsï¿½vel
+        // Dados do responsável
         $responsavel = $modelPessoaVinculada->buscarDadosResponsavel($where);
 
         if (count($responsavel) > 0) {
@@ -1929,7 +1929,7 @@ class Operadora_IndexController extends GenericController {
             $dadosResponsavel['cdCbo'] = $responsavel[0]->cdCbo;
             $dadosResponsavel['stAtivo'] = $responsavel[0]->ST_PESSOA_VINCULADA;
 
-            // Email do responsï¿½vel da operadora
+            // Email do responsável da operadora
             $emails = $modelEmail->buscarEmails(array('ID_PESSOA = ?' => $responsavel[0]->idPessoaVinculada));
 
             $listaEmails = array();
@@ -1944,7 +1944,7 @@ class Operadora_IndexController extends GenericController {
 
             $dadosResponsavel['emailsResponsavel'] = $listaEmails;
 
-            // Telefones do responsï¿½vel da operadora
+            // Telefones do responsável da operadora
             $telefones = $modelTelefone->buscarTelefones(array('ID_PESSOA = ?' => $responsavel[0]->idPessoaVinculada));
             $listaTelefones = array();
 
@@ -1982,7 +1982,7 @@ class Operadora_IndexController extends GenericController {
                     'arquivo' => $arquivo));
             }
         } else {
-            parent::message('Erro ao localizar o responsï¿½vel.', '/operadora/index/responsavel', 'error');
+            parent::message('Erro ao localizar o responsável.', '/operadora/index/responsavel', 'error');
         }
 
         $modelCBO = new Application_Model_CBO();
@@ -2004,7 +2004,7 @@ class Operadora_IndexController extends GenericController {
 
         try {
             if ($CDCBO) {
-                // apaga o que for dessa empresa e responsï¿½vel
+                // apaga o que for dessa empresa e responsável
                 $where = array(
                     'ID_PESSOA_FISICA = ?' => $idResponsavel,
                     'ID_PESSOA_JURIDICA = ?' => $idOperadora
@@ -2025,7 +2025,7 @@ class Operadora_IndexController extends GenericController {
                     $modelSituacao = new Application_Model_Situacao();
                     $dadosSituacao = array(
                         'ID_PESSOA' => $idOperadora,
-                        'DS_JUSTIFICATIVA' => 'Mudanï¿½a em responsï¿½veis da operadora.',
+                        'DS_JUSTIFICATIVA' => 'Mudança em responsáveis da operadora.',
                         'ID_USUARIO' => $this->_sessao['idUsuario'],
                         'TP_ENTIDADE_VALE_CULTURA' => 'O',
                         'ID_TIPO_SITUACAO' => 1
